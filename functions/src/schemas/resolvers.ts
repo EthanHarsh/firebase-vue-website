@@ -1,16 +1,13 @@
 import db from "../models/firebase";
 import {QueryDocumentSnapshot} from "firebase-admin/firestore";
 
-const DB = (process.env.DATABASE as string).replace("<PASSWORD>", (process.env.DATABASE_PASSWORD as string));
-!DB && console.error("DB Credentials Required.");
-
 // Error Messages
 const errFetchPrjStr = "Error fetching projects";
 
 const resolvers = {
   Query: {
     projects: async () => {
-      const snapshot = await db.collection("users")
+      const snapshot = await db.collection("projects")
           .get()
           .catch((err) => {
             err && console.error("Database Connection Error.");
@@ -27,7 +24,7 @@ const resolvers = {
       return results;
     },
     features: async () => {
-      const snapshot = await db.collection("users")
+      const snapshot = await db.collection("projects")
           .where("featured", "==", true)
           .get()
           .catch((err) => {
