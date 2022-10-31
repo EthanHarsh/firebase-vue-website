@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
-import {typeDefs, resolvers} from './schemas';
+import {typeDefs, resolvers} from "./schemas";
 import {ExpressContext} from "apollo-server-express";
-import {ApolloServer,Config} from "apollo-server-cloud-functions";
+import {ApolloServer, Config} from "apollo-server-cloud-functions";
 
 
 // // Start writing Firebase Functions
@@ -13,9 +13,9 @@ import {ApolloServer,Config} from "apollo-server-cloud-functions";
 // });
 
 const graphqlConfig: Config<ExpressContext> = {
-    typeDefs,
-    resolvers,
-  };
+  typeDefs,
+  resolvers,
+};
 const server = new ApolloServer(graphqlConfig);
 const handler = server.createHandler();
 exports.graphql = functions.https.onRequest(handler as any);

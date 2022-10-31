@@ -1,4 +1,5 @@
-import { gql } from 'apollo-server-express';
+
+import {gql} from "apollo-server-express";
 
 const typeDefs = gql`
   type Project {
@@ -17,6 +18,6 @@ const typeDefs = gql`
     features: [Project]
     projects: [Project]
   }
-`
+`;
 
 export default typeDefs;
