@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd frontend
+cd ionic_frontend
 npm install
