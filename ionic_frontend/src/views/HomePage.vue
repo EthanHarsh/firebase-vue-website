@@ -11,48 +11,48 @@
           <ion-title size="large">{{title}}</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-grid class="ion-margin-top flex">
-        <ion-row class="ion-justify-content-center ion-align-self-center">
-          <ion-col size="8">
-            <figure class="heroimg ion-align-self-center ion-justify-content-center">
-              <ion-img v-bind="heroAttr" />
+      <ion-grid class="ion-margin-top">
+        <ion-row class="ion-justify-content-center">
+            <figure class="heroimg">
+              <ion-row class="ion-justify-content-center ion-align-items-start">
+                <ion-img v-bind="heroAttr" />
+              </ion-row>
               <figcaption class="caption ion-padding">{{heroCaption}}</figcaption>        
             </figure>
-          </ion-col>
-          <ion-col size="8">
-          <ion-card>
-            <ion-card-header color="primary">
-              <ion-card-subtitle>Hello.</ion-card-subtitle>
-              <ion-card-title>My name is Ethan.</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="ion-margin-top">
-            <ion-grid>
-              <ion-row class="ion-justify-content-center">
-                <h1 class="tagline ion-margin ion-padding">I like Mac & Cheese, Techno, and Coding.</h1>
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                  <ion-icon :icon="business" class="hero-icons" />
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                  <h2 class="ion-margin ion-padding hero-description">I'm a web3 focused developer with significant start-up and small business experience.</h2>
-              </ion-row>
-              <ion-row class="ion-justify-content-center">    
-                  <ion-icon :icon="school" class="hero-icons" />
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                  <h2 class="ion-margin ion-padding hero-description">I have a bachelor's degree and a full stack coding certificate from Ohio State University.</h2>
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                  <ion-icon :icon="build" class="hero-icons" />
-              </ion-row>
-              <ion-row class="ion-justify-content-center">
-                  <h2 class="ion-margin ion-padding hero-description">My technical skills include Solidity, Ethers.js, Typescript, Python and Serverless Cloud Architectures.</h2>
-              </ion-row>
-            </ion-grid>
-
-            </ion-card-content>
-          </ion-card>
-          </ion-col>
+          <ion-row class="ion-justify-content-center"> 
+            <ion-card>
+                <ion-card-header color="primary">
+                  <ion-card-subtitle>Hello,</ion-card-subtitle>
+                  <ion-card-title>My name is Ethan.</ion-card-title>
+                </ion-card-header>
+              <ion-card-content class="ion-margin-top">
+                <ion-grid>
+                  <!--
+                  <ion-row class="ion-justify-content-center">
+                    <h1 class="tagline ion-margin ion-padding">I like Mac & Cheese, Techno, and Coding.</h1>
+                  </ion-row> -->
+                  <ion-row class="ion-justify-content-center">
+                      <ion-icon :icon="business" class="hero-icons" />
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center">
+                      <h2 class="ion-margin ion-padding hero-description">I'm a web3 focused developer with significant start-up and small business experience.</h2>
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center">    
+                      <ion-icon :icon="school" class="hero-icons" />
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center">
+                      <h2 class="ion-margin ion-padding hero-description">I have a bachelor's degree and a full stack coding certificate from Ohio State University.</h2>
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center">
+                      <ion-icon :icon="build" class="hero-icons" />
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center">
+                      <h2 class="ion-margin ion-padding hero-description">My technical skills include Solidity, Ethers.js, Typescript, Python and Serverless Cloud Architectures.</h2>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>  
+          </ion-row>
         </ion-row>
       </ion-grid>
     </ion-content>
@@ -113,6 +113,7 @@ export default  defineComponent({
     height: 100px;
     width: 100px;
     color: var(--ion-color-secondary);
+    margin-top: 32px;
   }
 
   .tagline {
