@@ -178,7 +178,6 @@ export default  defineComponent({
 
   .intro-card-content {
     margin-left: 3.6rem;
-    color: var(--ion-color-medium);
   }
   .interests{
     list-style-type: none;
