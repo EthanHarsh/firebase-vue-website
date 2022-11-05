@@ -68,19 +68,19 @@
                     <ion-icon :icon="business" class="hero-icons" />
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
-                    <ion-text class="ion-margin ion-padding hero-description">I'm a web3 focused developer with significant start-up and small business experience.</ion-text>
+                    <p class="ion-margin ion-padding hero-description">I'm a web3 focused developer with significant start-up and small business experience.</p>
                 </ion-row>
                 <ion-row class="ion-justify-content-center">    
                     <ion-icon :icon="school" class="hero-icons" />
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
-                    <ion-text class="ion-margin ion-padding hero-description">I have a bachelor's degree and a full stack coding certificate from Ohio State University.</ion-text>
+                    <p class="ion-margin ion-padding hero-description">I have a bachelor's degree and a full stack coding certificate from Ohio State University.</p>
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
                     <ion-icon :icon="build" class="hero-icons" />
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
-                    <ion-text class="ion-margin ion-padding hero-description">My technical skills include Solidity, Ethers.js, Typescript, Python and Serverless Cloud Architectures.</ion-text>
+                    <p class="ion-margin ion-padding hero-description">My technical skills include Solidity, Ethers.js, Typescript, Python and Serverless Cloud Architectures.</p>
                 </ion-row>
               </ion-grid> 
             </ion-col>
@@ -93,9 +93,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { httpsCallable} from "firebase/functions";
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon } from '@ionic/vue';
 import { business, school, build } from 'ionicons/icons';
 import { heroImages} from '../constants/images';
+import {functions} from "../constants/firebase";
 
 const title = 'Welcome';
 const heroImg = () => {
@@ -118,6 +120,16 @@ export default  defineComponent({
       heroCaption: heroAttr.alt
     }
   },
+  async created() {
+    const fetchErrorMsg = "Error fetching writing data.";
+
+    const getRssFeed = httpsCallable(functions, 'getRssFeed');
+    getRssFeed({recent: true})
+      .then((data) => {
+        const d = data.data;
+        console.log(d);
+      })
+  },
   setup() {
     return {
       business,
@@ -137,7 +149,6 @@ export default  defineComponent({
   }
 
   .hero-description {
-    color: var(--ion-color-primary-contrast);
     text-align: center;
   }
 
@@ -159,17 +170,13 @@ export default  defineComponent({
     text-align: center;
   }
 
-  .intro-card {
-    color: var(--ion-color-medium);
-  }
-
   .intro-card-content-title {
-    color: var(--ion-color-primary-contrast);
     font-size: 1.25rem;
   }
 
   .intro-card-content {
     margin-left: 3.6rem;
+    color: var(--ion-color-medium);
   }
   .interests{
     list-style-type: none;

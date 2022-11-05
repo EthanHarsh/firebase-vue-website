@@ -1,7 +1,4 @@
 import * as functions from "firebase-functions";
-import {typeDefs, resolvers} from "./schemas";
-import {ExpressContext} from "apollo-server-express";
-import {ApolloServer, Config} from "apollo-server-cloud-functions";
 import {getRssFeed} from "./medium";
 
 
@@ -13,11 +10,4 @@ import {getRssFeed} from "./medium";
 //   response.send("Hello from Firebase!");
 // });
 
-const graphqlConfig: Config<ExpressContext> = {
-  typeDefs,
-  resolvers,
-};
-const server = new ApolloServer(graphqlConfig);
-const handler = server.createHandler();
-exports.graphql = functions.https.onRequest(handler as any);
-exports.getRssFeed = functions.https.onRequest(getRssFeed as any);
+exports.getRssFeed = functions.https.onCall(getRssFeed);
