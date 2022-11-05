@@ -31,10 +31,10 @@
                   <ion-row class="ion-padding">
                     <div class="intro-card">
                       <div>
-                        <ion-text><Span class="intro-card-content-title">Name:</Span> <span class="intro-card-content">Ethan Harsh</span></ion-text>                   
+                        <ion-text><span class="intro-card-content-title">Name:</span> <span class="intro-card-content">Ethan Harsh</span></ion-text>                   
                       </div>
                       <div>
-                        <ion-text><Span class="intro-card-content-title">Interests:</Span> 
+                        <ion-text><span class="intro-card-content-title">Interests:</span> 
                           <ul class="interests">
                             <li>Mac & Cheese</li>
                             <li>Techno</li>
@@ -43,7 +43,7 @@
                         </ion-text>                   
                       </div>
                       <div>
-                        <ion-text><Span class="intro-card-content-title">Tech Stack:</Span> 
+                        <ion-text><span class="intro-card-content-title">Tech Stack:</span> 
                           <ul class="interests">
                             <li>Typescript</li>
                             <li>Solidity</li>
@@ -63,29 +63,33 @@
 
           <ion-row class="ion-justify-content-center"> 
             <ion-col size="6" class="ion-padding">
-              <ion-grid>
+              <ion-grid class="ion-justify-content-center">
                 <ion-row class="ion-justify-content-center">
                     <ion-icon :icon="business" class="hero-icons" />
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
-                    <p class="ion-margin ion-padding hero-description">I'm a web3 focused developer with significant start-up and small business experience.</p>
+                    <p>I'm a web3 focused developer with significant start-up and small business experience.</p>
                 </ion-row>
                 <ion-row class="ion-justify-content-center">    
                     <ion-icon :icon="school" class="hero-icons" />
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
-                    <p class="ion-margin ion-padding hero-description">I have a bachelor's degree and a full stack coding certificate from Ohio State University.</p>
+                    <p>I have a bachelor's degree and a full stack coding certificate from Ohio State University.</p>
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
                     <ion-icon :icon="build" class="hero-icons" />
                 </ion-row>
                 <ion-row class="ion-justify-content-center">
-                    <p class="ion-margin ion-padding hero-description">My technical skills include Solidity, Ethers.js, Typescript, Python and Serverless Cloud Architectures.</p>
+                    <p>My technical skills include Solidity, Ethers.js, Typescript, Python and Serverless Cloud Architectures.</p>
                 </ion-row>
               </ion-grid> 
             </ion-col>
           </ion-row>
         </ion-row>
+        <ion-row class="ion-padding ion-margin">
+          <h1>Recent Writing</h1>
+        </ion-row>
+        <WritingPreviewCard :articles="articles" />
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -93,11 +97,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { httpsCallable} from "firebase/functions";
+import { httpsCallable, HttpsCallableResult} from "firebase/functions";
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon } from '@ionic/vue';
 import { business, school, build } from 'ionicons/icons';
 import { heroImages} from '../constants/images';
 import {functions} from "../constants/firebase";
+import WritingPreviewCard from '../components/WritingPreviewCard.vue';
 
 const title = 'Welcome';
 const heroImg = () => {
@@ -112,23 +117,24 @@ const heroAttr = {
 
 export default  defineComponent({
   name: 'HomePage',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon, WritingPreviewCard },
   data() {
     return {
+      articles: [],
       title,
       heroAttr,
       heroCaption: heroAttr.alt
     }
   },
-  async created() {
+  async mounted() {
     const fetchErrorMsg = "Error fetching writing data.";
 
     const getRssFeed = httpsCallable(functions, 'getRssFeed');
-    getRssFeed({recent: true})
-      .then((data) => {
-        const d = data.data;
-        console.log(d);
-      })
+    const d = await getRssFeed({recent: true})
+      .catch((err) => {
+        err && console.error(fetchErrorMsg);
+      });
+    (d) && (this.articles = (d as HttpsCallableResult<any>).data.data)
   },
   setup() {
     return {
@@ -146,10 +152,6 @@ export default  defineComponent({
     width: 300px;
     border-radius: 100%;
     overflow: hidden;
-  }
-
-  .hero-description {
-    text-align: center;
   }
 
   .hero-icons {

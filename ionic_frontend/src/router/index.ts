@@ -21,11 +21,17 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'portfolio',
-        component: () => import('@/views/PortfolioPage.vue')
+        component: () => import('@/views/HomePage.vue'),
+        beforeEnter() {
+          window.location.href = 'https://github.com/EthanHarsh';
+        }
       },
       {
         path: 'writing',
-        component: () => import('@/views/WritingPage.vue')
+        component: () => import('@/views/HomePage.vue'),
+        beforeEnter() {
+          window.location.href = 'https://blog.ethanharsh.com/';
+        }
       }
     ]
   }

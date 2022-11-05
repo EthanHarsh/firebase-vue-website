@@ -1,5 +1,6 @@
 import axios from "axios";
 import {parseFeed} from "htmlparser2";
+import {writingImages} from "../constants/writingImages";
 
 interface Options {
     recent: boolean
@@ -10,6 +11,7 @@ interface items {
   link: string,
   pubDate: string,
   title: string,
+  image: string
 }
 
 interface RssResponse {
@@ -54,6 +56,7 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
       id: item.id as string,
       link: item.link as string,
       title: item.title as string,
+      image: writingImages[item.title as string] as string,
       pubDate: `${fdo.getMonth()}/${fdo.getDay()}/${fdo.getFullYear()}`,
     };
     rssResponse.push(formattedItem);
