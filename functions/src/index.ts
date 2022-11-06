@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
 import {getRssFeed} from "./medium";
-
+import {getFeaturedRepos} from "./github";
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -11,3 +11,4 @@ import {getRssFeed} from "./medium";
 // });
 
 exports.getRssFeed = functions.https.onCall(getRssFeed);
+exports.getFeaturedRepos = functions.https.onCall(getFeaturedRepos);

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="mobileSize">
+    <div v-if="mobileChange">
         <div v-for="article of articles" :key="article.id">
             <ion-row class="ion-align-items-start ion-padding ion-margin">
                 <ion-col>
@@ -45,22 +45,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonButton, IonImg} from '@ionic/vue'
-const breakpoint = 992;
+import { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonButton, IonImg} from '@ionic/vue';
+import { store } from '../store';
 export default defineComponent({
     name: 'WritingPreviewCard',
     components: { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonButton, IonImg },
     props: {
         articles: {type: Array, required: true},
     },
-    data() {
-        return {
-            mobileSize: window.innerWidth < breakpoint,
-        }
-    },
-    mounted() {
-        window.onresize = () => {
-            this.mobileSize = window.innerWidth < breakpoint;
+    computed: {
+        mobileChange: () => {
+            return store.mobileSize;
         }
     }
 })

@@ -104,3 +104,4 @@ dist
 .tern-port
 
 main-340008-*.json
+app.config.json

@@ -142,7 +142,7 @@ export default  defineComponent({
       school,
       build
     }
-  }
+  },
 });
 </script>
 
@@ -179,7 +179,7 @@ export default  defineComponent({
   .intro-card-content {
     margin-left: 3.6rem;
   }
-  .interests{
+  .interests {
     list-style-type: none;
     margin-left: 5rem;
     margin-top: -1.5rem;

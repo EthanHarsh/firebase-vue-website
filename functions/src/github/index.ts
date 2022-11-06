@@ -1,0 +1,28 @@
+import {Octokit} from "octokit";
+import {GITHUB_TOKEN} from "../../../app_config.json";
+
+const octokit = new Octokit({auth: GITHUB_TOKEN});
+
+export const getFeaturedRepos = async () => {
+  await octokit.rest.users.getAuthenticated();
+  const {data} = await octokit.rest.repos.listForAuthenticatedUser();
+  const featured = [];
+  if (!data) {
+    return {
+      error: "Could not fetch repos",
+    };
+  }
+  for (const repo of data) {
+    if ((repo.topics as string[]).includes("featured")) {
+      const ro = {
+        name: repo.name,
+        description: repo.description,
+        language: repo.language,
+      };
+      featured.push(ro);
+    }
+  }
+  return {
+    data: featured,
+  };
+};
