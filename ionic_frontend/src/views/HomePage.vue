@@ -90,6 +90,10 @@
           <h1>Recent Writing</h1>
         </ion-row>
         <WritingPreviewCard :articles="articles" />
+        <ion-row class="ion-padding ion-margin">
+          <h1>Coding Projects</h1>
+        </ion-row>
+        <ProjectCards :projects="repos" />
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -103,6 +107,7 @@ import { business, school, build } from 'ionicons/icons';
 import { heroImages} from '../constants/images';
 import {functions} from "../constants/firebase";
 import WritingPreviewCard from '../components/WritingPreviewCard.vue';
+import ProjectCards from "../components/ProjectCards.vue";
 
 const title = 'Welcome';
 const heroImg = () => {
@@ -117,10 +122,11 @@ const heroAttr = {
 
 export default  defineComponent({
   name: 'HomePage',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon, WritingPreviewCard },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon, WritingPreviewCard, ProjectCards },
   data() {
     return {
       articles: [],
+      repos: [],
       title,
       heroAttr,
       heroCaption: heroAttr.alt
@@ -129,12 +135,21 @@ export default  defineComponent({
   async mounted() {
     const fetchErrorMsg = "Error fetching writing data.";
 
+    // Get the latest articles
     const getRssFeed = httpsCallable(functions, 'getRssFeed');
     const d = await getRssFeed({recent: true})
       .catch((err) => {
         err && console.error(fetchErrorMsg);
       });
     (d) && (this.articles = (d as HttpsCallableResult<any>).data.data)
+
+    // Get featured repos
+    const getFeaturedRepos = httpsCallable(functions, 'getFeaturedRepos');
+    const repos = await getFeaturedRepos()
+      .catch((err) => {
+        err && console.error(fetchErrorMsg);
+      });
+    (repos) && (this.repos = (repos as HttpsCallableResult<any>).data.data.reverse());
   },
   setup() {
     return {
