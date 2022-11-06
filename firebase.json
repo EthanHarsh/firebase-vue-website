@@ -20,7 +20,7 @@
     }
   ],
   "hosting": {
-    "public": "frontend/build",
+    "public": "ionic_frontend/dist",
     "ignore": [
       "firebase.json",
       "**/.*",

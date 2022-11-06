@@ -86,12 +86,52 @@
             </ion-col>
           </ion-row>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
-          <h1>Recent Writing</h1>
+        <ion-row>
+          <div class="ion-padding ion-margin">
+            <h1>Recent Writing</h1>
+            <ion-card-subtitle class="ion-padding-left">Ideas I'm thinking about</ion-card-subtitle>
+          </div>
         </ion-row>
         <WritingPreviewCard :articles="articles" />
-        <ion-row class="ion-padding ion-margin">
-          <h1>Coding Projects</h1>
+        <ion-row>
+          <div class="ion-padding ion-margin">
+            <h1>Future Skills</h1>
+            <ion-card-subtitle class="ion-padding-left">Subjects I'm currently studying</ion-card-subtitle>
+          </div>
+        </ion-row>
+        <ion-row class="ion-padding ion-margin ion-justify-content-center">
+          <ion-accordion-group :multiple="true" :value="['first']" class="future-acc">
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>Functional Programming</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">Functional programming is a programming paradigm that focuses on the behavior of functions rather than the state of data. Its simpler syntax, code as expressions, and emphasis on immutability have made functional programming more popular in recent years. It is employed in almost every scenario, ranging from front-end development to server-side scripting to back-end services. Functional programming used in conjunction with new serverless cloud tools can be used to quickly build robust, decoupled, and easily scalable applications.</div>
+            </ion-accordion>
+            <ion-accordion value="second">
+              <ion-item slot="header" color="light">
+                <ion-label>Haskell</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">Haskell is one of the oldest and most popular functional languages. It was the original pathfinder for many advanced programming language features, including features found in extremely popular languages such as Java. Haskell is a strictly functional, statistical, general-purpose language that provides type inference and lazy evaluation. It is utilized in academic, research, and industrial settings. Haskell is reliable and scalable because its is strictly functional and has no side effects.</div>
+            </ion-accordion>
+            <ion-accordion value="third">
+              <ion-item slot="header" color="light">
+                <ion-label>Clarity</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">Bitcoin now supports smart contracts with Clarity. The language is decidable, making it simple to determine what your code will do. Clarity is interpreted instead of compiled with smart contract source code published directly on chain. Clarity provides developers with a secure way to create sophisticated smart contracts for the world's most secure blockchain.</div>
+            </ion-accordion>
+            <ion-accordion value="fourth">
+              <ion-item slot="header" color="light">
+                <ion-label>JsLIGO</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">Tezos smart contracts can be written in LIGO, a functional language designed to include the features you need while avoiding patterns that make formal verification difficult. A large portion of the most efficient smart contracts can be described in less than 1,000 lines of code, making them a good target for formal verification methods (a major feature of Tezos). A simple, strongly typed language with a low footprint is the end goal of LIGO. JsLIGO is a TypeScript/JavaScript inspired syntax that aims to be familiar to those coming from TypeScript and Javascript.</div>
+            </ion-accordion> 
+          </ion-accordion-group>
+        </ion-row>
+        <ion-row>
+          <div class="ion-padding ion-margin">
+            <h1>Coding Projects</h1>
+            <ion-card-subtitle class="ion-padding-left">Past & Current Projects</ion-card-subtitle>
+          </div>
         </ion-row>
         <ProjectCards :projects="repos" />
       </ion-grid>
@@ -102,7 +142,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { httpsCallable, HttpsCallableResult} from "firebase/functions";
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon, IonAccordionGroup, IonAccordion, IonItem, IonLabel } from '@ionic/vue';
 import { business, school, build } from 'ionicons/icons';
 import { heroImages} from '../constants/images';
 import {functions} from "../constants/firebase";
@@ -122,7 +162,7 @@ const heroAttr = {
 
 export default  defineComponent({
   name: 'HomePage',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon, WritingPreviewCard, ProjectCards },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonImg, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonIcon, WritingPreviewCard, ProjectCards, IonAccordionGroup, IonAccordion, IonItem, IonLabel },
   data() {
     return {
       articles: [],
@@ -165,8 +205,7 @@ export default  defineComponent({
   .heroImg {
     height: 300px;
     width: 300px;
-    border-radius: 100%;
-    overflow: hidden;
+    border-radius: 2.5px;
   }
 
   .hero-icons {
@@ -198,5 +237,9 @@ export default  defineComponent({
     list-style-type: none;
     margin-left: 5rem;
     margin-top: -1.5rem;
+  }
+
+  .future-acc {
+    width: 66vw !important;
   }
 </style>

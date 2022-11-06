@@ -27,5 +27,3 @@ export const getFeaturedRepos = async () => {
     data: featured,
   };
 };
-
-getFeaturedRepos();
