@@ -9,7 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "fix": "eslint --fix",
-    "deploy": "npm run lint && npm run fix && firebase deploy --only hosting"
+    "deploy": "npm run lint && npm run fix && npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "@capacitor/android": "4.4.0",
