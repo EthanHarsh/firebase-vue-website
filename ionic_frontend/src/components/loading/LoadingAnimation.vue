@@ -1,5 +1,5 @@
 <template>
-  <ion-loading message="Loading..." cssClass="loading" />
+  <ion-loading message="Loading..." spinner="crescent" />
 </template>
 
 <script lang="ts">
@@ -12,8 +12,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.loading {
-  display: inline;
-}
-</style>
+<style scoped></style>
