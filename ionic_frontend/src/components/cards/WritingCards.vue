@@ -46,8 +46,8 @@
               color="secondary"
               :href="article.link"
               class="ion-margin-top"
-              >Read Art../../storen-button
-            >
+              >Read Article
+            </ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -68,7 +68,7 @@ import {
 } from "@ionic/vue";
 import { store } from "../../store";
 export default defineComponent({
-  name: "WritingPreviewCard",
+  name: "WritingCards",
   components: {
     IonCard,
     IonCardTitle,

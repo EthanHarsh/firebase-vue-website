@@ -118,7 +118,7 @@
             >
           </div>
         </ion-row>
-        <WritingPreviewCard :articles="articles" />
+        <writing-cards :articles="articles" />
         <ion-row>
           <div class="ion-padding ion-margin">
             <h1>Future Skills</h1>
@@ -236,8 +236,8 @@ import {
 import { business, school, build } from "ionicons/icons";
 import { heroImages } from "../constants/images";
 import { functions } from "../constants/firebase";
-import WritingPreviewCard from "../components/cards/cards/WritingPreviewCard.vue";
-import ProjectCards from "../components/cards/cards/ProjectCards.vue";
+import WritingCards from "../components/cards/WritingCards.vue";
+import ProjectCards from "../components/cards/ProjectCards.vue";
 
 const title = "Welcome";
 const heroImg = () => {
@@ -266,7 +266,7 @@ export default defineComponent({
     IonCardContent,
     IonText,
     IonIcon,
-    WritingPreviewCard,
+    WritingCards,
     ProjectCards,
     IonAccordionGroup,
     IonAccordion,
