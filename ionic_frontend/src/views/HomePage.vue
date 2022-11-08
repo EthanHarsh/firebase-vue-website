@@ -66,44 +66,46 @@
           </div>
         </ion-row>
         <ion-row class="ion-padding ion-margin ion-justify-content-center">
-          <ion-accordion-group
-            :multiple="true"
-            :value="['first']"
-            class="future-acc"
-          >
-            <ion-accordion value="first">
-              <ion-item slot="header" color="light">
-                <ion-label>Functional Programming</ion-label>
-              </ion-item>
-              <div class="ion-padding" slot="content">
-                {{ homeCopy.futureSkills.functionalProgramming }}
-              </div>
-            </ion-accordion>
-            <ion-accordion value="second">
-              <ion-item slot="header" color="light">
-                <ion-label>Haskell</ion-label>
-              </ion-item>
-              <div class="ion-padding" slot="content">
-                {{ homeCopy.futureSkills.haskell }}
-              </div>
-            </ion-accordion>
-            <ion-accordion value="third">
-              <ion-item slot="header" color="light">
-                <ion-label>Clarity</ion-label>
-              </ion-item>
-              <div class="ion-padding" slot="content">
-                {{ homeCopy.futureSkills.clarity }}
-              </div>
-            </ion-accordion>
-            <ion-accordion value="fourth">
-              <ion-item slot="header" color="light">
-                <ion-label>JsLIGO</ion-label>
-              </ion-item>
-              <div class="ion-padding" slot="content">
-                {{ homeCopy.futureSkills.jsLigo }}
-              </div>
-            </ion-accordion>
-          </ion-accordion-group>
+          <div class="outer-radius no-overflow">
+            <ion-accordion-group
+              :multiple="true"
+              :value="['first']"
+              class="future-acc"
+            >
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Functional Programming</ion-label>
+                </ion-item>
+                <div class="ion-padding content-background" slot="content">
+                  {{ homeCopy.futureSkills.functionalProgramming }}
+                </div>
+              </ion-accordion>
+              <ion-accordion value="second">
+                <ion-item slot="header" color="light">
+                  <ion-label>Haskell</ion-label>
+                </ion-item>
+                <div class="ion-padding content-background" slot="content">
+                  {{ homeCopy.futureSkills.haskell }}
+                </div>
+              </ion-accordion>
+              <ion-accordion value="third">
+                <ion-item slot="header" color="light">
+                  <ion-label>Clarity</ion-label>
+                </ion-item>
+                <div class="ion-padding content-background" slot="content">
+                  {{ homeCopy.futureSkills.clarity }}
+                </div>
+              </ion-accordion>
+              <ion-accordion value="fourth">
+                <ion-item slot="header" color="light">
+                  <ion-label>JsLIGO</ion-label>
+                </ion-item>
+                <div class="ion-padding content-background" slot="content">
+                  {{ homeCopy.futureSkills.jsLigo }}
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </div>
         </ion-row>
         <ion-row>
           <div class="ion-padding ion-margin">
@@ -212,5 +214,13 @@ export default defineComponent({
 
 .future-acc {
   width: 66vw !important;
+}
+
+.no-overflow {
+  overflow: hidden;
+}
+
+.content-background {
+  background: var(--ion-color-step-200);
 }
 </style>

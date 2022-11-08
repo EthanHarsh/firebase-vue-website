@@ -3,8 +3,11 @@
     <div v-for="article of articles" :key="article.id">
       <ion-row class="ion-align-items-start ion-padding ion-margin">
         <ion-col>
-          <ion-card class="ion-padding ion-margin writing-card">
-            <ion-card-header color="secondary" class="ion-margin ion-padding">
+          <ion-card class="ion-padding ion-margin writing-card outer-radius">
+            <ion-card-header
+              color="secondary"
+              class="ion-margin ion-padding inner-radius"
+            >
               <ion-card-subtitle>
                 {{ article.pubDate }}
               </ion-card-subtitle>
@@ -12,8 +15,8 @@
                 {{ article.title }}
               </ion-card-title>
             </ion-card-header>
-            <ion-card-content class="ion-margin-top">
-              <ion-img :src="article.image" :alt="article.title" />
+            <ion-card-content class="ion-margin-top ion-justify-content-center">
+              <img :src="article.image" :alt="article.title" />
               <ion-button
                 fill="outline"
                 color="secondary"
@@ -30,8 +33,11 @@
   <div v-else>
     <ion-row class="ion-justify-content-center">
       <ion-col size="4" v-for="article of articles" :key="article.id">
-        <ion-card class="ion-padding ion-margin writing-card">
-          <ion-card-header color="secondary" class="ion-margin ion-padding">
+        <ion-card class="ion-padding ion-margin writing-card outer-radius">
+          <ion-card-header
+            color="secondary"
+            class="ion-margin ion-padding inner-radius"
+          >
             <ion-card-subtitle>
               {{ article.pubDate }}
             </ion-card-subtitle>
@@ -39,8 +45,12 @@
               {{ article.title }}
             </ion-card-title>
           </ion-card-header>
-          <ion-card-content class="ion-margin-top">
-            <ion-img :src="article.image" :alt="article.title" />
+          <ion-card-content class="ion-margin-top ion-justify-content-center">
+            <img
+              :src="article.image"
+              :alt="article.title"
+              class="inner-radius card-img"
+            />
             <ion-button
               fill="outline"
               color="secondary"
@@ -64,7 +74,6 @@ import {
   IonCardContent,
   IonRow,
   IonButton,
-  IonImg,
 } from "@ionic/vue";
 import { store } from "../../store";
 export default defineComponent({
@@ -76,7 +85,6 @@ export default defineComponent({
     IonCardContent,
     IonRow,
     IonButton,
-    IonImg,
   },
   props: {
     articles: { type: Array, required: true },
@@ -89,4 +97,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.card-img {
+  width: 100%;
+}
+</style>

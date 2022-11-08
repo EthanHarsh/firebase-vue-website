@@ -74,6 +74,18 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** Border Radius **/
+  --outer-radius: 20px;
+  --inner-radius: calc(var(--outer-radius) * 0.5);
+}
+
+.outer-radius {
+  border-radius: var(--outer-radius) !important;
+}
+
+.inner-radius {
+  border-radius: var(--inner-radius) !important;
 }
 
 @media (prefers-color-scheme: dark) {

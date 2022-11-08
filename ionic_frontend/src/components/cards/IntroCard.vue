@@ -1,9 +1,9 @@
 <template>
-  <ion-card>
+  <ion-card class="outer-radius">
     <ion-card-content class="ion-margin-top">
       <figure class="heroimg">
         <ion-row class="ion-justify-content-center ion-align-items-start">
-          <ion-img v-bind="heroAttr" />
+          <img v-bind="heroAttr" class="inner-radius" />
         </ion-row>
         <figcaption class="caption ion-padding">
           {{ heroCaption }}
@@ -58,7 +58,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import {
-  IonImg,
   IonCard,
   IonCardHeader,
   IonCardTitle,
@@ -80,7 +79,6 @@ const heroAttr = {
 
 export default defineComponent({
   components: {
-    IonImg,
     IonCard,
     IonCardHeader,
     IonCardTitle,
@@ -101,10 +99,8 @@ export default defineComponent({
 .heroImg {
   height: 300px;
   width: 300px;
-  border-radius: 2.5px;
 }
 .caption {
-  color: var(--ion-color-medium);
   margin-top: 8px;
   text-align: center;
 }
