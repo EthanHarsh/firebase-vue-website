@@ -4,7 +4,7 @@
             <ion-row class="ion-padding ion-margin">
                 <ion-col>
                     <ion-card class="ion-padding ion-margin writing-card">
-                        <ion-card-header color="secondary" class="ion-margin ion-padding">
+                        <ion-card-header color="tertiary" class="ion-margin ion-padding">
                             <ion-card-subtitle>
                                 {{repo.language}}
                             </ion-card-subtitle>
@@ -18,7 +18,7 @@
                             </ion-text>
                         </ion-card-content>
                         <ion-card-content>
-                            <ion-button fill="outline" color="secondary" :href="repo.url">View on Github</ion-button>
+                            <ion-button fill="outline" color="tertiary" :href="repo.url">View on Github</ion-button>
                         </ion-card-content>
                     </ion-card>
                 </ion-col>
@@ -29,7 +29,7 @@
         <ion-row>
             <ion-col size="4" v-for="repo of projects" :key="repo.language">
                 <ion-card class="ion-padding ion-margin writing-card">
-                    <ion-card-header color="secondary" class="ion-margin ion-padding">
+                    <ion-card-header color="tertiary" class="ion-margin ion-padding">
                         <ion-card-subtitle>
                             {{repo.language}}
                         </ion-card-subtitle>
@@ -43,7 +43,7 @@
                         </ion-text>
                     </ion-card-content>
                     <ion-card-content>
-                        <ion-button fill="outline" color="secondary" :href="repo.url">View on Github</ion-button>
+                        <ion-button fill="outline" color="tertiary" :href="repo.url">View on Github</ion-button>
                     </ion-card-content>
                 </ion-card>
             </ion-col>

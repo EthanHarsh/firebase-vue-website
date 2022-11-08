@@ -4,34 +4,40 @@ import TabsPage from '../views/TabsPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    redirect: '/home'
-  },
-  {
     path: '',
     component: TabsPage,
     children: [
       {
         path: '',
-        redirect: '/home'
-      },
-      {
-        path: 'home',
         component: () => import('@/views/HomePage.vue')
       },
       {
         path: 'portfolio',
-        component: () => import('@/views/HomePage.vue'),
+        component: () => import('@/views/PortfolioPage.vue'),
         beforeEnter() {
           window.location.href = 'https://github.com/EthanHarsh';
-        }
+        } 
       },
       {
         path: 'writing',
-        component: () => import('@/views/HomePage.vue'),
+        component: () => import('@/views/WritingPage.vue'),
         beforeEnter() {
           window.location.href = 'https://blog.ethanharsh.com/';
         }
+      },
+      {
+        path: 'linkedin',
+        component: () => import('@/views/GoodbyePage.vue'),
+        props: {
+          redirectName: 'LinkedIn'
+        },
+        beforeEnter() {
+          window.location.href = 'https://www.linkedin.com/in/ethanharsh/'
+        }
+      },
+      {
+        path: ':catchAll(.*)',
+        redirect: '/'
       }
     ]
   }

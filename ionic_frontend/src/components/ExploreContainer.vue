@@ -1,7 +1,7 @@
 <template>
   <div id="container">
-    <strong>{{ name }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <strong>👷🏻‍♂️ {{ name }} is under construction. 👷🏻‍♂️</strong>
+    <p>Redirecting you to {{ redirectName }}.</p>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'ExploreContainer',
   props: {
-    name: String
+    name: String,
+    redirectName: String,
   }
 });
 </script>
