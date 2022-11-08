@@ -1,25 +1,25 @@
 <template>
   <div v-if="mobileChange">
-    <div v-for="repo of projects" :key="repo.language">
-      <ion-row class="ion-padding ion-margin">
+    <div v-for="article of articles" :key="article.id">
+      <ion-row class="ion-align-items-start ion-padding ion-margin">
         <ion-col>
           <ion-card class="ion-padding ion-margin writing-card">
-            <ion-card-header color="tertiary" class="ion-margin ion-padding">
+            <ion-card-header color="secondary" class="ion-margin ion-padding">
               <ion-card-subtitle>
-                {{ repo.language }}
+                {{ article.pubDate }}
               </ion-card-subtitle>
               <ion-card-title>
-                {{ repo.name }}
+                {{ article.title }}
               </ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-margin-top">
-              <ion-text>
-                {{ repo.description }}
-              </ion-text>
-            </ion-card-content>
-            <ion-card-content>
-              <ion-button fill="outline" color="tertiary" :href="repo.url"
-                >View on Github</ion-button
+              <ion-img :src="article.image" :alt="article.title" />
+              <ion-button
+                fill="outline"
+                color="secondary"
+                :href="article.link"
+                class="ion-margin-top"
+                >Read Article</ion-button
               >
             </ion-card-content>
           </ion-card>
@@ -28,25 +28,25 @@
     </div>
   </div>
   <div v-else>
-    <ion-row>
-      <ion-col size="4" v-for="repo of projects" :key="repo.language">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4" v-for="article of articles" :key="article.id">
         <ion-card class="ion-padding ion-margin writing-card">
-          <ion-card-header color="tertiary" class="ion-margin ion-padding">
+          <ion-card-header color="secondary" class="ion-margin ion-padding">
             <ion-card-subtitle>
-              {{ repo.language }}
+              {{ article.pubDate }}
             </ion-card-subtitle>
             <ion-card-title>
-              {{ repo.name }}
+              {{ article.title }}
             </ion-card-title>
           </ion-card-header>
           <ion-card-content class="ion-margin-top">
-            <ion-text>
-              {{ repo.description }}
-            </ion-text>
-          </ion-card-content>
-          <ion-card-content>
-            <ion-button fill="outline" color="tertiary" :href="repo.url"
-              >View on Github</ion-button
+            <ion-img :src="article.image" :alt="article.title" />
+            <ion-button
+              fill="outline"
+              color="secondary"
+              :href="article.link"
+              class="ion-margin-top"
+              >Read Art../../storen-button
             >
           </ion-card-content>
         </ion-card>
@@ -64,14 +64,11 @@ import {
   IonCardContent,
   IonRow,
   IonButton,
-  IonCol,
-  IonCardHeader,
-  IonText,
+  IonImg,
 } from "@ionic/vue";
-import { store } from "../store";
-
+import { store } from "../../store";
 export default defineComponent({
-  name: "ProjectCards",
+  name: "WritingPreviewCard",
   components: {
     IonCard,
     IonCardTitle,
@@ -79,12 +76,10 @@ export default defineComponent({
     IonCardContent,
     IonRow,
     IonButton,
-    IonCol,
-    IonCardHeader,
-    IonText,
+    IonImg,
   },
   props: {
-    projects: { type: Array, required: true },
+    articles: { type: Array, required: true },
   },
   computed: {
     mobileChange: () => {

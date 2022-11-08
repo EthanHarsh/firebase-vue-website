@@ -236,8 +236,8 @@ import {
 import { business, school, build } from "ionicons/icons";
 import { heroImages } from "../constants/images";
 import { functions } from "../constants/firebase";
-import WritingPreviewCard from "../components/WritingPreviewCard.vue";
-import ProjectCards from "../components/ProjectCards.vue";
+import WritingPreviewCard from "../components/cards/cards/WritingPreviewCard.vue";
+import ProjectCards from "../components/cards/cards/ProjectCards.vue";
 
 const title = "Welcome";
 const heroImg = () => {
