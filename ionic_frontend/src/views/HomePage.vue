@@ -118,7 +118,7 @@
             >
           </div>
         </ion-row>
-        <writing-cards :articles="articles" />
+        <writing-cards :articles="articles" :loading="writingLoading" />
         <ion-row>
           <div class="ion-padding ion-margin">
             <h1>Future Skills</h1>
@@ -205,7 +205,7 @@
             >
           </div>
         </ion-row>
-        <ProjectCards :projects="repos" />
+        <project-cards :loading="projectLoading" :projects="repos" />
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -291,6 +291,7 @@ export default defineComponent({
       err && console.error(fetchErrorMsg);
     });
     d && (this.articles = (d as HttpsCallableResult<any>).data.data);
+    this.writingLoading = false;
 
     // Get featured repos
     const getFeaturedRepos = httpsCallable(functions, "getFeaturedRepos");
@@ -299,12 +300,15 @@ export default defineComponent({
     });
     repos &&
       (this.repos = (repos as HttpsCallableResult<any>).data.data.reverse());
+    this.projectLoading = false;
   },
   setup() {
     return {
       business,
       school,
       build,
+      writingLoading: true,
+      projectLoading: true,
     };
   },
 });

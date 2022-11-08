@@ -1,5 +1,12 @@
 <template>
-  <div v-if="mobileChange">
+  <div v-if="loading">
+    <ion-row class="ion-padding ion-margin ion-justify-content-center">
+      <ion-col>
+        <loading-animation />
+      </ion-col>
+    </ion-row>
+  </div>
+  <div v-else-if="mobileChange">
     <div v-for="repo of projects" :key="repo.language">
       <ion-row class="ion-padding ion-margin">
         <ion-col>
@@ -54,7 +61,7 @@
     </ion-row>
   </div>
 </template>
-../../store
+
 <script lang="ts">
 import { defineComponent } from "vue";
 import {
@@ -69,6 +76,7 @@ import {
   IonText,
 } from "@ionic/vue";
 import { store } from "../../store";
+import LoadingAnimation from "@/components/loading/LoadingAnimation.vue";
 
 export default defineComponent({
   name: "ProjectCards",
@@ -82,9 +90,11 @@ export default defineComponent({
     IonCol,
     IonCardHeader,
     IonText,
+    LoadingAnimation,
   },
   props: {
     projects: { type: Array, required: true },
+    loading: Boolean,
   },
   computed: {
     mobileChange: () => {
