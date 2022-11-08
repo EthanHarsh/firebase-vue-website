@@ -11,7 +11,10 @@
       <ion-row class="ion-padding ion-margin">
         <ion-col>
           <ion-card class="ion-padding ion-margin outer-radius">
-            <ion-card-header color="tertiary" class="ion-margin ion-padding">
+            <ion-card-header
+              color="tertiary"
+              class="ion-margin ion-padding inner-radius"
+            >
               <ion-card-subtitle>
                 {{ repo.language }}
               </ion-card-subtitle>
