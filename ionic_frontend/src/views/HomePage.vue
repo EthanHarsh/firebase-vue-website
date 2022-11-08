@@ -13,69 +13,7 @@
       </ion-header>
       <ion-grid class="ion-margin-top">
         <ion-row class="ion-justify-content-center">
-          <ion-card>
-            <ion-card-content class="ion-margin-top">
-              <figure class="heroimg">
-                <ion-row
-                  class="ion-justify-content-center ion-align-items-start"
-                >
-                  <ion-img v-bind="heroAttr" />
-                </ion-row>
-                <figcaption class="caption ion-padding">
-                  {{ heroCaption }}
-                </figcaption>
-              </figure>
-            </ion-card-content>
-            <ion-card-header color="primary">
-              <ion-card-subtitle>Hello,</ion-card-subtitle>
-              <ion-card-title>My name is Ethan.</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="ion-margin-top">
-              <ion-grid class="ion-margin">
-                <ion-row class="ion-padding">
-                  <div class="intro-card">
-                    <div>
-                      <ion-text
-                        ><span class="intro-card-content-title">Name:</span>
-                        <span class="intro-card-content"
-                          >Ethan Harsh</span
-                        ></ion-text
-                      >
-                    </div>
-                    <div>
-                      <ion-text
-                        ><span class="intro-card-content-title"
-                          >Interests:</span
-                        >
-                        <ul class="interests">
-                          <li>Mac & Cheese</li>
-                          <li>Techno</li>
-                          <li>Coding</li>
-                        </ul>
-                      </ion-text>
-                    </div>
-                    <div>
-                      <ion-text
-                        ><span class="intro-card-content-title"
-                          >Tech Stack:</span
-                        >
-                        <ul class="interests">
-                          <li>Typescript</li>
-                          <li>Solidity</li>
-                          <li>Vue.js</li>
-                          <li>Python</li>
-                          <li>GCP & AWS</li>
-                          <li>Docker</li>
-                          <li>Serverless</li>
-                        </ul>
-                      </ion-text>
-                    </div>
-                  </div>
-                </ion-row>
-              </ion-grid>
-            </ion-card-content>
-          </ion-card>
-
+          <intro-card />
           <ion-row class="ion-justify-content-center">
             <ion-col size="6" class="ion-padding">
               <ion-grid class="ion-justify-content-center">
@@ -220,13 +158,7 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonImg,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonCardSubtitle,
-  IonCardContent,
-  IonText,
   IonIcon,
   IonAccordionGroup,
   IonAccordion,
@@ -234,21 +166,12 @@ import {
   IonLabel,
 } from "@ionic/vue";
 import { business, school, build } from "ionicons/icons";
-import { heroImages } from "../constants/images";
 import { functions } from "../constants/firebase";
-import WritingCards from "../components/cards/WritingCards.vue";
-import ProjectCards from "../components/cards/ProjectCards.vue";
+import WritingCards from "@/components/cards/WritingCards.vue";
+import ProjectCards from "@/components/cards/ProjectCards.vue";
+import IntroCard from "@/components/cards/IntroCard.vue";
 
 const title = "Welcome";
-const heroImg = () => {
-  const index: number = Math.round(Math.random() * 2);
-  return heroImages[index];
-};
-
-const heroAttr = {
-  ...heroImg(),
-  class: "heroImg",
-};
 
 export default defineComponent({
   name: "HomePage",
@@ -258,13 +181,7 @@ export default defineComponent({
     IonTitle,
     IonContent,
     IonPage,
-    IonImg,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
     IonCardSubtitle,
-    IonCardContent,
-    IonText,
     IonIcon,
     WritingCards,
     ProjectCards,
@@ -272,14 +189,13 @@ export default defineComponent({
     IonAccordion,
     IonItem,
     IonLabel,
+    IntroCard,
   },
   data() {
     return {
       articles: [],
       repos: [],
       title,
-      heroAttr,
-      heroCaption: heroAttr.alt,
     };
   },
   async mounted() {
@@ -315,41 +231,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.heroImg {
-  height: 300px;
-  width: 300px;
-  border-radius: 2.5px;
-}
-
 .hero-icons {
   height: 100px;
   width: 100px;
   color: var(--ion-color-primary);
   margin-top: 32px;
-}
-
-.tagline {
-  color: var(--ion-color-primary-contrast);
-  text-align: center;
-}
-
-.caption {
-  color: var(--ion-color-medium);
-  margin-top: 8px;
-  text-align: center;
-}
-
-.intro-card-content-title {
-  font-size: 1.25rem;
-}
-
-.intro-card-content {
-  margin-left: 3.6rem;
-}
-.interests {
-  list-style-type: none;
-  margin-left: 5rem;
-  margin-top: -1.5rem;
 }
 
 .future-acc {
