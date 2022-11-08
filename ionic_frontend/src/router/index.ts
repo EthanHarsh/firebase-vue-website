@@ -1,51 +1,51 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
+import { createRouter, createWebHistory } from "@ionic/vue-router";
+import { RouteRecordRaw } from "vue-router";
+import TabsPage from "../views/TabsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '',
+    path: "",
     component: TabsPage,
     children: [
       {
-        path: '',
-        component: () => import('@/views/HomePage.vue')
+        path: "",
+        component: () => import("@/views/HomePage.vue"),
       },
       {
-        path: 'portfolio',
-        component: () => import('@/views/PortfolioPage.vue'),
+        path: "portfolio",
+        component: () => import("@/views/PortfolioPage.vue"),
         beforeEnter() {
-          window.location.href = 'https://github.com/EthanHarsh';
-        } 
+          window.location.href = "https://github.com/EthanHarsh";
+        },
       },
       {
-        path: 'writing',
-        component: () => import('@/views/WritingPage.vue'),
+        path: "writing",
+        component: () => import("@/views/WritingPage.vue"),
         beforeEnter() {
-          window.location.href = 'https://blog.ethanharsh.com/';
-        }
+          window.location.href = "https://blog.ethanharsh.com/";
+        },
       },
       {
-        path: 'linkedin',
-        component: () => import('@/views/GoodbyePage.vue'),
+        path: "linkedin",
+        component: () => import("@/views/GoodbyePage.vue"),
         props: {
-          redirectName: 'LinkedIn'
+          redirectName: "LinkedIn",
         },
         beforeEnter() {
-          window.location.href = 'https://www.linkedin.com/in/ethanharsh/'
-        }
+          window.location.href = "https://www.linkedin.com/in/ethanharsh/";
+        },
       },
       {
-        path: ':catchAll(.*)',
-        redirect: '/'
-      }
-    ]
-  }
-]
+        path: ":catchAll(.*)",
+        redirect: "/",
+      },
+    ],
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

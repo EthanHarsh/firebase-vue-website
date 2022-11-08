@@ -1,9 +1,9 @@
-import { reactive } from 'vue';
-import { cardBreakpoint } from './constants/breakpoints';
+import { reactive } from "vue";
+import { cardBreakpoint } from "./constants/breakpoints";
 
 export const store = reactive({
-    mobileSize: window.innerWidth < cardBreakpoint,
-    updateMobileSize() {
-        this.mobileSize = window.innerWidth < cardBreakpoint;
-    }
-})
+  mobileSize: window.innerWidth < cardBreakpoint,
+  updateMobileSize() {
+    this.mobileSize = window.innerWidth < cardBreakpoint;
+  },
+});

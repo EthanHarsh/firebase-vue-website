@@ -1,66 +1,92 @@
 <template>
-    <div v-if="mobileChange">
-        <div v-for="article of articles" :key="article.id">
-            <ion-row class="ion-align-items-start ion-padding ion-margin">
-                <ion-col>
-                    <ion-card class="ion-padding ion-margin writing-card">
-                        <ion-card-header color="secondary" class="ion-margin ion-padding">
-                            <ion-card-subtitle>
-                                {{article.pubDate}}
-                            </ion-card-subtitle>
-                            <ion-card-title>
-                                {{article.title}}
-                            </ion-card-title>
-                        </ion-card-header>
-                        <ion-card-content class="ion-margin-top">
-                            <ion-img :src="article.image" :alt="article.title" />
-                            <ion-button fill="outline" color="secondary" :href="article.link" class="ion-margin-top">Read Article</ion-button>
-                        </ion-card-content>
-                    </ion-card>
-                </ion-col>
-            </ion-row>             
-        </div>
+  <div v-if="mobileChange">
+    <div v-for="article of articles" :key="article.id">
+      <ion-row class="ion-align-items-start ion-padding ion-margin">
+        <ion-col>
+          <ion-card class="ion-padding ion-margin writing-card">
+            <ion-card-header color="secondary" class="ion-margin ion-padding">
+              <ion-card-subtitle>
+                {{ article.pubDate }}
+              </ion-card-subtitle>
+              <ion-card-title>
+                {{ article.title }}
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="ion-margin-top">
+              <ion-img :src="article.image" :alt="article.title" />
+              <ion-button
+                fill="outline"
+                color="secondary"
+                :href="article.link"
+                class="ion-margin-top"
+                >Read Article</ion-button
+              >
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </div>
-    <div v-else>
-        <ion-row class="ion-justify-content-center">   
-            <ion-col size="4" v-for="article of articles" :key="article.id">
-                <ion-card class="ion-padding ion-margin writing-card">
-                    <ion-card-header color="secondary" class="ion-margin ion-padding">
-                        <ion-card-subtitle>
-                            {{article.pubDate}}
-                        </ion-card-subtitle>
-                        <ion-card-title>
-                            {{article.title}}
-                        </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content class="ion-margin-top">
-                        <ion-img :src="article.image" :alt="article.title" />
-                        <ion-button fill="outline" color="secondary" :href="article.link" class="ion-margin-top">Read Article</ion-button>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col> 
-        </ion-row>
-    </div>
+  </div>
+  <div v-else>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="4" v-for="article of articles" :key="article.id">
+        <ion-card class="ion-padding ion-margin writing-card">
+          <ion-card-header color="secondary" class="ion-margin ion-padding">
+            <ion-card-subtitle>
+              {{ article.pubDate }}
+            </ion-card-subtitle>
+            <ion-card-title>
+              {{ article.title }}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-margin-top">
+            <ion-img :src="article.image" :alt="article.title" />
+            <ion-button
+              fill="outline"
+              color="secondary"
+              :href="article.link"
+              class="ion-margin-top"
+              >Read Article</ion-button
+            >
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonButton, IonImg} from '@ionic/vue';
-import { store } from '../store';
+import { defineComponent } from "vue";
+import {
+  IonCard,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+  IonRow,
+  IonButton,
+  IonImg,
+} from "@ionic/vue";
+import { store } from "../store";
 export default defineComponent({
-    name: 'WritingPreviewCard',
-    components: { IonCard, IonCardTitle, IonCardSubtitle, IonCardContent, IonRow, IonButton, IonImg },
-    props: {
-        articles: {type: Array, required: true},
+  name: "WritingPreviewCard",
+  components: {
+    IonCard,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
+    IonRow,
+    IonButton,
+    IonImg,
+  },
+  props: {
+    articles: { type: Array, required: true },
+  },
+  computed: {
+    mobileChange: () => {
+      return store.mobileSize;
     },
-    computed: {
-        mobileChange: () => {
-            return store.mobileSize;
-        }
-    }
-})
+  },
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
