@@ -214,6 +214,7 @@ export default defineComponent({
 
 .future-acc {
   width: 66vw !important;
+  border-radius: var(--outer-radius);
 }
 
 .no-overflow {
