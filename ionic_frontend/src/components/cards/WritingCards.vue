@@ -16,7 +16,11 @@
               </ion-card-title>
             </ion-card-header>
             <ion-card-content class="ion-margin-top ion-justify-content-center">
-              <img :src="article.image" :alt="article.title" />
+              <img
+                :src="article.image"
+                :alt="article.title"
+                class="inner-radius card-img"
+              />
               <ion-button
                 fill="outline"
                 color="secondary"

@@ -1,5 +1,5 @@
 <template>
-  <ion-loading message="Loading..." spinner="crescent" />
+  <ion-loading message="Waking up Google Cloud Functions" spinner="crescent" />
 </template>
 
 <script lang="ts">
