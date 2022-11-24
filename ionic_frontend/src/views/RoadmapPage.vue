@@ -13,7 +13,21 @@
         </ion-toolbar>
       </ion-header>
       <ion-grid>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="header-img"
+            style="
+               {
+                background-image: headerAttr.src;
+              }
+            "
+          >
+            <h1 class="header-title">What's next?</h1>
+            <img v-bind="headerAttr" />
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding item">
           <div>
             <h1>Loading Bar Updates</h1>
             <p>
@@ -21,7 +35,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row class="ion-padding item">
           <div>
             <h1>CI/CD Pipeline</h1>
             <p>
@@ -31,7 +45,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row class="ion-padding item">
           <div>
             <h1>Build Unit Tests for Cloud Functions</h1>
             <p>
@@ -41,7 +55,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row class="ion-padding item">
           <div>
             <h1>Optimize data delivery from Cloud Functions</h1>
             <p>
@@ -50,7 +64,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row class="ion-padding item">
           <div>
             <h1>Featured Projects/Recent Writing Optimization</h1>
             <p>
@@ -63,7 +77,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row class="ion-padding item">
           <div>
             <h1>Add Ski Game</h1>
             <p>
@@ -73,7 +87,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding ion-margin">
+        <ion-row class="ion-padding item">
           <div>
             <h1>Roadmap Automation</h1>
             <p>
@@ -97,8 +111,16 @@ import {
   IonTitle,
   IonContent,
 } from "@ionic/vue";
+import { roadmapImages } from "../constants/images";
 
 const title = "Roadmap 🗺️";
+
+const headerImg = () => {
+  const index: number = Math.round(Math.random() * 1);
+  return roadmapImages[index];
+};
+
+const headerAttr = headerImg();
 
 export default defineComponent({
   name: "RoadmapPage",
@@ -112,7 +134,48 @@ export default defineComponent({
   data() {
     return {
       title,
+      headerAttr,
     };
   },
 });
 </script>
+
+<style scoped>
+img {
+  width: 100%;
+  position: absolute;
+  top: -33vh;
+  left: 0px;
+  z-index: -1;
+  filter: blur(5px);
+}
+
+.header-img {
+  height: 33vh;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .header-img {
+    height: 20vh;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-img {
+    height: 15vh;
+    overflow: hidden;
+  }
+}
+
+.header-title {
+  text-align: center;
+  z-index: 2;
+  font-size: 10vw;
+}
+
+.item:nth-of-type(odd) {
+  background-color: #f4f5f8;
+}
+</style>

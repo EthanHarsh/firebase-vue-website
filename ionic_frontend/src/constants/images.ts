@@ -12,3 +12,14 @@ export const heroImages = [
     alt: "An image of me in fancy clothes. Very nice.",
   },
 ];
+
+export const roadmapImages = [
+  {
+    src: "https://storage.googleapis.com/ethanharsh-public/tech-roadmap/technology-roadmap-1.png",
+    alt: "Roadmap header image.",
+  },
+  {
+    src: "https://storage.googleapis.com/ethanharsh-public/tech-roadmap/technology-roadmap-2.png",
+    alt: "Roadmap header image.",
+  },
+];

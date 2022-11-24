@@ -2,7 +2,7 @@
   <ion-page>
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar slot="bottom" selected-tab="roadmap">
         <ion-tab-button tab="home" href="/">
           <ion-icon :icon="home" />
           <ion-label>Home</ion-label>
@@ -21,6 +21,10 @@
           <ion-icon :icon="logoLinkedin" />
           <ion-label>LinkedIn</ion-label>
         </ion-tab-button>
+        <ion-tab-button tab="roadmap" href="/roadmap">
+          <ion-icon :icon="map" />
+          <ion-label>Roadmap</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
@@ -37,7 +41,13 @@ import {
   IonPage,
   IonRouterOutlet,
 } from "@ionic/vue";
-import { home, logoGithub, logoMedium, logoLinkedin } from "ionicons/icons";
+import {
+  home,
+  logoGithub,
+  logoMedium,
+  logoLinkedin,
+  map,
+} from "ionicons/icons";
 
 export default defineComponent({
   name: "TabsPage",
@@ -56,6 +66,7 @@ export default defineComponent({
       logoGithub,
       logoMedium,
       logoLinkedin,
+      map,
     };
   },
 });
