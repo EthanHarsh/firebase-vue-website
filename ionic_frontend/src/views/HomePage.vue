@@ -144,7 +144,7 @@ import ProjectCards from "@/components/cards/ProjectCards.vue";
 import IntroCard from "@/components/cards/IntroCard.vue";
 import { homeCopy } from "../constants/copy/home";
 
-const title = "Welcome";
+const title = "Welcome 👋🏻";
 
 export default defineComponent({
   name: "HomePage",

@@ -36,6 +36,10 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: "roadmap",
+        component: () => import("@/views/RoadmapPage.vue"),
+      },
+      {
         path: ":catchAll(.*)",
         redirect: "/",
       },
