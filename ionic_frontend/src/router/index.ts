@@ -4,11 +4,19 @@ import TabsPage from "../views/TabsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "",
+    path: "/",
+    redirect: "/page/home",
+  },
+  {
+    path: "/page/",
     component: TabsPage,
     children: [
       {
         path: "",
+        redirect: "/page/home",
+      },
+      {
+        path: "home",
         component: () => import("@/views/HomePage.vue"),
       },
       {
@@ -38,10 +46,6 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "roadmap",
         component: () => import("@/views/RoadmapPage.vue"),
-      },
-      {
-        path: ":catchAll(.*)",
-        redirect: "/",
       },
     ],
   },

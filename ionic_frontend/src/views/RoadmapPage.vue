@@ -155,6 +155,17 @@ img {
   overflow: hidden;
 }
 
+.header-title {
+  text-align: center;
+  z-index: 2;
+  font-size: 10vw;
+}
+
+.item:nth-of-type(odd) {
+  background-color: var(--ion-color-light);
+  color: var(--ion-color-light-contrast-rgb);
+}
+
 @media screen and (max-width: 992px) {
   .header-img {
     height: 20vh;
@@ -167,15 +178,5 @@ img {
     height: 15vh;
     overflow: hidden;
   }
-}
-
-.header-title {
-  text-align: center;
-  z-index: 2;
-  font-size: 10vw;
-}
-
-.item:nth-of-type(odd) {
-  background-color: #f4f5f8;
 }
 </style>
