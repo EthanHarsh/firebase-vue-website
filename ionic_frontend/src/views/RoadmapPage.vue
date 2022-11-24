@@ -30,9 +30,7 @@
         <ion-row class="ion-padding item">
           <div>
             <h1>Loading Bar Updates</h1>
-            <p>
-              Change loading bar to only display on the objects being updated.
-            </p>
+            <p>Only show loading bar on components being updated.</p>
           </div>
         </ion-row>
         <ion-row class="ion-padding item">
@@ -48,16 +46,12 @@
         <ion-row class="ion-padding item">
           <div>
             <h1>Build Unit Tests for Cloud Functions</h1>
-            <p>
-              Build a CI/CD pipeline. The pipeline needs to automatically deploy
-              new cloud functions as well as build and deploy changes to the Vue
-              application.
-            </p>
+            <p>Write a unit testing suite for Google Cloud Functions.</p>
           </div>
         </ion-row>
         <ion-row class="ion-padding item">
           <div>
-            <h1>Optimize data delivery from Cloud Functions</h1>
+            <h1>Optimize Data Delivery From Cloud Functions</h1>
             <p>
               Implement GZIP compression and other techniques to optimize data
               delivery from cloud functions.
@@ -68,12 +62,9 @@
           <div>
             <h1>Featured Projects/Recent Writing Optimization</h1>
             <p>
-              Data fetching associated with getting Featured Github Projects and
-              recently Written Medium articles is the main cause of loading
-              delays. To combat this issue cloud functions to monitor Medium
-              articles and changes to the featured projects on my Github profile
-              will be implemented to hardcore the data into JSON files included
-              within the Vue application.
+              Data fetching associated with getting featured Github Projects and
+              recently written Medium articles is the main cause of loading
+              delays.
             </p>
           </div>
         </ion-row>
