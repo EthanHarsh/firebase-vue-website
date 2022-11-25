@@ -14,15 +14,7 @@
       </ion-header>
       <ion-grid>
         <ion-row>
-          <ion-col
-            size="12"
-            class="header-img"
-            style="
-               {
-                background-image: headerAttr.src;
-              }
-            "
-          >
+          <ion-col size="12" class="header-img">
             <h1 class="header-title">What's next?</h1>
             <img v-bind="headerAttr" />
           </ion-col>
