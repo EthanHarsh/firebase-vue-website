@@ -21,12 +21,6 @@
         </ion-row>
         <ion-row class="ion-padding item">
           <div>
-            <h1>Loading Bar Updates</h1>
-            <p>Only show loading bar on components being updated.</p>
-          </div>
-        </ion-row>
-        <ion-row class="ion-padding item">
-          <div>
             <h1>CI/CD Pipeline</h1>
             <p>
               Build a CI/CD pipeline. The pipeline needs to automatically test

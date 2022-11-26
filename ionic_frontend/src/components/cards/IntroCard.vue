@@ -1,5 +1,5 @@
 <template>
-  <ion-card class="outer-radius">
+  <ion-card class="outer-radius no-shadow" color="light">
     <ion-card-content class="ion-margin-top">
       <figure class="heroimg">
         <ion-row class="ion-justify-content-center ion-align-items-start">

@@ -3,7 +3,9 @@
     <div v-for="article of articles" :key="article.id">
       <ion-row class="ion-align-items-start ion-padding ion-margin">
         <ion-col>
-          <ion-card class="ion-padding ion-margin writing-card outer-radius">
+          <ion-card
+            class="ion-padding ion-margin writing-card outer-radius no-shadow light-border"
+          >
             <ion-card-header
               color="secondary"
               class="ion-margin ion-padding inner-radius"
@@ -19,7 +21,7 @@
               <img
                 :src="article.image"
                 :alt="article.title"
-                class="inner-radius card-img"
+                class="inner-radius card-img bw-filter"
               />
               <ion-button
                 fill="outline"
@@ -37,7 +39,9 @@
   <div v-else>
     <ion-row class="ion-justify-content-center">
       <ion-col size="4" v-for="article of articles" :key="article.id">
-        <ion-card class="ion-padding ion-margin writing-card outer-radius">
+        <ion-card
+          class="ion-padding ion-margin writing-card outer-radius no-shadow light-border"
+        >
           <ion-card-header
             color="secondary"
             class="ion-margin ion-padding inner-radius"
@@ -53,7 +57,7 @@
             <img
               :src="article.image"
               :alt="article.title"
-              class="inner-radius card-img"
+              class="inner-radius card-img bw-filter"
             />
             <ion-button
               fill="outline"
