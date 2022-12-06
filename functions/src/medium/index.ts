@@ -54,7 +54,7 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
     let image = writingImages[item.title as string];
     (!image) && (image = writingImages["defaultImages"][Math.round(Math.random() * 5)]);
     delete item.pubDate;
-    const formattedItem = {
+    const formattedItem: items = {
       id: item.id as string,
       link: item.link as string,
       title: item.title as string,

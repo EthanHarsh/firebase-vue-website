@@ -21,7 +21,7 @@
               <img
                 :src="article.image"
                 :alt="article.title"
-                class="inner-radius card-img bw-filter"
+                class="inner-radius card-img"
               />
               <ion-button
                 fill="outline"
