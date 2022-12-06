@@ -105,3 +105,5 @@ dist
 
 main-340008-*.json
 app.config.json
+
+ionic_frontend/dist

@@ -4,7 +4,7 @@
       <ion-row class="ion-align-items-start ion-padding ion-margin">
         <ion-col>
           <ion-card
-            class="ion-padding ion-margin writing-card outer-radius no-shadow light-border"
+            class="ion-padding ion-margin writing-card outer-radius no-shadow light-border animate__animated animate__fadeIn"
           >
             <ion-card-header
               color="secondary"
@@ -57,7 +57,7 @@
             <img
               :src="article.image"
               :alt="article.title"
-              class="inner-radius card-img bw-filter"
+              class="inner-radius card-img"
             />
             <ion-button
               fill="outline"
@@ -83,6 +83,7 @@ import {
   IonRow,
   IonButton,
 } from "@ionic/vue";
+import "animate.css";
 import { store } from "../../store";
 export default defineComponent({
   name: "WritingCards",

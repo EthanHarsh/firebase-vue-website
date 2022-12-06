@@ -12,7 +12,7 @@
           >"
         </ion-toolbar>
       </ion-header>
-      <ion-grid>
+      <ion-grid class="animate__animated animate__fadeIn">
         <ion-row>
           <ion-col size="12" class="header-img">
             <h1 class="header-title">What's next?</h1>

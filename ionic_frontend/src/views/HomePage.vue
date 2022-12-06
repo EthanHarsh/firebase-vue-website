@@ -13,32 +13,44 @@
       </ion-header>
       <ion-grid class="ion-margin-top">
         <ion-row class="ion-justify-content-center">
-          <intro-card />
+          <intro-card class="animate__animated animate__fadeIn" />
           <ion-row class="ion-justify-content-center">
             <ion-col size="6" class="ion-padding">
               <ion-grid class="ion-justify-content-center">
-                <ion-row class="ion-justify-content-center">
+                <ion-row
+                  class="ion-justify-content-center animate__animated animate__fadeIn"
+                >
                   <ion-icon :icon="business" class="hero-icons" />
                 </ion-row>
-                <ion-row class="ion-justify-content-center">
+                <ion-row
+                  class="ion-justify-content-center animate__animated animate__fadeIn"
+                >
                   <p>
                     I'm a web3 focused developer with significant start-up and
                     small business experience.
                   </p>
                 </ion-row>
-                <ion-row class="ion-justify-content-center">
+                <ion-row
+                  class="ion-justify-content-center animate__animated animate__fadeIn"
+                >
                   <ion-icon :icon="school" class="hero-icons" />
                 </ion-row>
-                <ion-row class="ion-justify-content-center">
+                <ion-row
+                  class="ion-justify-content-center animate__animated animate__fadeIn"
+                >
                   <p>
                     I have a bachelor's degree and a full stack coding
                     certificate from Ohio State University.
                   </p>
                 </ion-row>
-                <ion-row class="ion-justify-content-center">
+                <ion-row
+                  class="ion-justify-content-center animate__animated animate__fadeIn"
+                >
                   <ion-icon :icon="build" class="hero-icons" />
                 </ion-row>
-                <ion-row class="ion-justify-content-center">
+                <ion-row
+                  class="ion-justify-content-center animate__animated animate__fadeIn"
+                >
                   <p>
                     My technical skills include Solidity, Ethers.js, Typescript,
                     Python and Serverless Cloud Architectures.
@@ -58,7 +70,7 @@
         </ion-row>
         <writing-cards :articles="articles" :loading="writingLoading" />
         <ion-row>
-          <div class="ion-padding ion-margin">
+          <div class="ion-padding ion-margin animate__animated animate__fadeIn">
             <h1>Future Skills</h1>
             <ion-card-subtitle class="ion-padding-left"
               >Subjects I'm currently studying</ion-card-subtitle
@@ -108,7 +120,7 @@
           </div>
         </ion-row>
         <ion-row>
-          <div class="ion-padding ion-margin">
+          <div class="ion-padding ion-margin animate__animated animate__fadeIn">
             <h1>Coding Projects</h1>
             <ion-card-subtitle class="ion-padding-left"
               >Past & Current Projects</ion-card-subtitle
@@ -124,6 +136,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { httpsCallable, HttpsCallableResult } from "firebase/functions";
+import "animate.css";
 import {
   IonPage,
   IonHeader,

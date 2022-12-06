@@ -51,12 +51,14 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
   for (let i = 0; i < resLen; i++) {
     const item = {...items[i]};
     const fdo: Date = new Date(item.pubDate as Date);
+    let image = writingImages[item.title as string];
+    (!image) && (image = writingImages["defaultImages"][Math.round(Math.random() * 5)]);
     delete item.pubDate;
     const formattedItem = {
       id: item.id as string,
       link: item.link as string,
       title: item.title as string,
-      image: writingImages[item.title as string] as string,
+      image: image as string,
       pubDate: `${fdo.getMonth()}/${fdo.getDay()}/${fdo.getFullYear()}`,
     };
     rssResponse.push(formattedItem);
