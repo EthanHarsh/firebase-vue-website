@@ -1,27 +1,12 @@
 import axios from "axios";
 import {parseFeed} from "htmlparser2";
 import {writingImages} from "../constants/writingImages";
-import {updateRssJson} from "../github";
 import {checkContent} from "../utils";
+import {updateJson} from "../github";
+import {Items, RssResponse, ErrorResponse} from "../types";
 
 interface Options {
     recent: boolean
-}
-
-export interface Items {
-  id: string,
-  link: string,
-  pubDate: string,
-  title: string,
-  image: string
-}
-
-export interface RssResponse {
-  data: Items[]
-}
-
-export interface ErrorResponse {
-  error: string
 }
 
 export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResponse> => {
@@ -67,8 +52,13 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
 
   return {data: rssResponse};
 };
-
 export type GetRssFeed = typeof getRssFeed;
+
+export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) => {
+  const response = await updateJson(rssResponse, rssHash, "ionic_frontend/src/constants/json/recentArticles.json", "updating article json");
+  return response;
+};
+export type UpdateRssJson = typeof updateRssJson;
 
 export const checkRssFeed = async (hash: string) => {
   const response = await checkContent(hash, {

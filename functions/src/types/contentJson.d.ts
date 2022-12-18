@@ -1,3 +1,5 @@
+import {OctokitResponse} from "@octokit/types";
+import {GithubCurrentStateOptions} from "./gitHubRepos";
 export interface Items {
     id: string,
     link: string,
@@ -23,4 +25,13 @@ export interface RssResponse {
 
 export interface ErrorResponse {
     error: string
+}
+
+export interface UpdateGitHubOptions extends GithubCurrentStateOptions {
+    message: string,
+    content: {
+      hash: string,
+      data: Items[] | RepoObject[]
+    },
+    current: OctokitResponse<any, number>
 }

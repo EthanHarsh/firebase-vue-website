@@ -1,3 +1,3 @@
-import {GetFeaturedRepos, UpdateFeaturedRepoJson, UpdateRssJson} from "../github";
-import {GetRssFeed} from "../medium";
+import {GetFeaturedRepos, UpdateFeaturedRepoJson} from "../github";
+import {GetRssFeed, UpdateRssJson} from "../medium";
 export {GetFeaturedRepos, UpdateFeaturedRepoJson, UpdateRssJson, GetRssFeed};
