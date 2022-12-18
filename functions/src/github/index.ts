@@ -2,7 +2,7 @@ import {Octokit} from "octokit";
 import {OctokitResponse} from "@octokit/types";
 import {GITHUB_TOKEN} from "../app_config.json";
 import {RssResponse, ErrorResponse, items} from "../medium";
-import {contentHash} from "../utils";
+import {checkContent} from "../utils";
 
 
 interface RepoObject {
@@ -74,7 +74,7 @@ const getCurrentRepoState = async (options: GithubCurrentStateOptions) => {
   return current;
 };
 
-const updateRepo = async (options: UpdateGitHubOptions) => {
+export const updateRepo = async (options: UpdateGitHubOptions) => {
   const {owner, repo, path, message, content, current} = options;
 
   const updateRes = await octokit.request(`PUT /repos/${owner}/${repo}/contents/${path}`, {
@@ -177,26 +177,11 @@ export const updateFeaturedRepoJson = async (featuredRepoResponse: RepoResponse,
 };
 
 export const checkFeaturedRepos = async (hash: string) => {
-  const errorMsg = "Error checking featured repos.";
-  const featuredRepos = await getFeaturedRepos();
+  const response = await checkContent(hash, {
+    contentFetch: getFeaturedRepos,
+    contentUpdate: updateFeaturedRepoJson,
+    errorMsg: "Error checking featured repos.",
+  });
 
-  if ((featuredRepos as ErrorResponse).error) {
-    return {
-      error: errorMsg,
-    };
-  }
-
-  const featuredRepoHash = contentHash((featuredRepos as RepoResponse).data);
-
-  if (featuredRepoHash !== hash) {
-    await updateFeaturedRepoJson((featuredRepos as RepoResponse), featuredRepoHash);
-    return {
-      update: true,
-      data: (featuredRepos as RepoResponse).data,
-    };
-  } else {
-    return {
-      update: false,
-    };
-  }
+  return response;
 };

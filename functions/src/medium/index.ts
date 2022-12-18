@@ -2,7 +2,7 @@ import axios from "axios";
 import {parseFeed} from "htmlparser2";
 import {writingImages} from "../constants/writingImages";
 import {updateRssJson} from "../github";
-import {contentHash} from "../utils";
+import {checkContent} from "../utils";
 
 interface Options {
     recent: boolean
@@ -23,12 +23,6 @@ export interface RssResponse {
 export interface ErrorResponse {
   error: string
 }
-
-interface UpdateRssResponse {
-  update: boolean,
-  data?: items[]
-}
-
 
 export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResponse> => {
   // Error Messages
@@ -74,26 +68,12 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
   return {data: rssResponse};
 };
 
-export const checkRssFeed = async (hash: string) :Promise<UpdateRssResponse | ErrorResponse> => {
-  const errorMsg = "Error checking RSS feed.";
-  const rssResponse = await getRssFeed({recent: true});
-  if ((rssResponse as ErrorResponse).error) {
-    return {
-      error: errorMsg,
-    };
-  }
+export const checkRssFeed = async (hash: string) => {
+  const response = await checkContent(hash, {
+    contentFetch: getRssFeed,
+    contentUpdate: updateRssJson,
+    errorMsg: "Error checking RSS feed.",
+  });
 
-  const rssHash = contentHash((rssResponse as RssResponse).data);
-
-  if (rssHash !== hash) {
-    await updateRssJson((rssResponse as RssResponse), rssHash);
-    return {
-      update: true,
-      data: (rssResponse as RssResponse).data,
-    };
-  } else {
-    return {
-      update: false,
-    };
-  }
+  return response;
 };
