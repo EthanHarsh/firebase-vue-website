@@ -193,9 +193,11 @@ export default defineComponent({
 
     // Get featured repos
     const checkFeaturedRepos = httpsCallable(functions, "checkFeaturedRepos");
-    const repos = await checkFeaturedRepos().catch((err) => {
-      err && console.error(fetchErrorMsg);
-    });
+    const repos = await checkFeaturedRepos(featuredRepoJson.hash).catch(
+      (err) => {
+        err && console.error(fetchErrorMsg);
+      }
+    );
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     repos.update &&

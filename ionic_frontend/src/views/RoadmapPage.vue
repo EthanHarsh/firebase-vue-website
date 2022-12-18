@@ -29,13 +29,24 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding item">
+        <ion-row class="ion-padding item finished">
           <div>
             <h1>Featured Projects Optimization</h1>
             <p>
               Data fetching associated with getting featured Github Projects and
               recently written Medium articles is the main cause of loading
               delays.
+            </p>
+          </div>
+        </ion-row>
+        <ion-row class="ion-padding item finished">
+          <div>
+            <h1>
+              Generalize/Optimize checkFeaturedRepos & checkRssFeed functions
+            </h1>
+            <p>
+              After writing functions I realized that the two functions share
+              much of the same code.
             </p>
           </div>
         </ion-row>
