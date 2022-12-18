@@ -1,5 +1,5 @@
-import contentHash from "./contentHash";
-import checkContent from "./checkContent";
+import contentHash from "./content/contentHash";
+import checkContent from "./content/checkContent";
 
 export {
   contentHash,

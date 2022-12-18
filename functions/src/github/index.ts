@@ -1,20 +1,8 @@
 import {Octokit} from "octokit";
 import {OctokitResponse} from "@octokit/types";
 import {GITHUB_TOKEN} from "../app_config.json";
-import {RssResponse, ErrorResponse, items} from "../medium";
+import {RssResponse, ErrorResponse, Items, RepoObject, RepoResponse} from "../types";
 import {checkContent} from "../utils";
-
-
-interface RepoObject {
-  name: string,
-  description: string | null,
-  language: string | null,
-  url: string | null,
-}
-
-interface RepoResponse {
-  data: RepoObject[]
-}
 
 interface GithubCurrentStateOptions {
   owner: string,
@@ -26,7 +14,7 @@ interface UpdateGitHubOptions extends GithubCurrentStateOptions {
   message: string,
   content: {
     hash: string,
-    data: items[] | RepoObject[]
+    data: Items[] | RepoObject[]
   },
   current: OctokitResponse<any, number>
 }
@@ -57,6 +45,8 @@ export const getFeaturedRepos = async () => {
     data: featured,
   };
 };
+
+export type GetFeaturedRepos = typeof getFeaturedRepos;
 
 const getCurrentRepoState = async (options: GithubCurrentStateOptions) => {
   const {owner, repo, path} = options;
@@ -140,6 +130,8 @@ export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) =
   }
 };
 
+export type UpdateRssJson = typeof updateRssJson;
+
 export const updateFeaturedRepoJson = async (featuredRepoResponse: RepoResponse, repoHash: string) => {
   let options: GithubCurrentStateOptions | UpdateGitHubOptions = {
     owner: "EthanHarsh",
@@ -175,6 +167,8 @@ export const updateFeaturedRepoJson = async (featuredRepoResponse: RepoResponse,
     return true;
   }
 };
+
+export type UpdateFeaturedRepoJson = typeof updateFeaturedRepoJson;
 
 export const checkFeaturedRepos = async (hash: string) => {
   const response = await checkContent(hash, {

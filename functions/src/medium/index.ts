@@ -8,7 +8,7 @@ interface Options {
     recent: boolean
 }
 
-export interface items {
+export interface Items {
   id: string,
   link: string,
   pubDate: string,
@@ -17,7 +17,7 @@ export interface items {
 }
 
 export interface RssResponse {
-  data: items[]
+  data: Items[]
 }
 
 export interface ErrorResponse {
@@ -44,7 +44,7 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
     return {error: errorMsg};
   }
 
-  const rssResponse: items[] = [];
+  const rssResponse: Items[] = [];
   const items = feed.items;
   // Process Response
   const resLen: number = (data as Options).recent ? 3 : items.length;
@@ -55,7 +55,7 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
     let image = writingImages[item.title as string];
     (!image) && (image = writingImages["defaultImages"][Math.round(Math.random() * 5)]);
     delete item.pubDate;
-    const formattedItem: items = {
+    const formattedItem: Items = {
       id: item.id as string,
       link: item.link as string,
       title: item.title as string,
@@ -67,6 +67,8 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
 
   return {data: rssResponse};
 };
+
+export type GetRssFeed = typeof getRssFeed;
 
 export const checkRssFeed = async (hash: string) => {
   const response = await checkContent(hash, {

@@ -1,43 +1,15 @@
 import contentHash from "./contentHash";
-import {getRssFeed} from "../medium";
-import {getFeaturedRepos, updateFeaturedRepoJson, updateRssJson} from "../github";
+import {Items, RssResponse, ErrorResponse, RepoObject, RepoResponse, GetFeaturedRepos, UpdateFeaturedRepoJson, UpdateRssJson, GetRssFeed} from "../../types";
 
 interface Options {
-    contentFetch: typeof getRssFeed | typeof getFeaturedRepos,
-    contentUpdate: typeof updateRssJson | typeof updateFeaturedRepoJson,
+    contentFetch: GetRssFeed | GetFeaturedRepos,
+    contentUpdate: UpdateRssJson | UpdateFeaturedRepoJson,
     errorMsg: string,
-}
-
-export interface items {
-  id: string,
-  link: string,
-  pubDate: string,
-  title: string,
-  image: string
-}
-
-export interface RssResponse {
-  data: items[]
-}
-
-export interface ErrorResponse {
-  error: string
-}
-
-interface RepoObject {
-    name: string,
-    description: string | null,
-    language: string | null,
-    url: string | null,
-}
-
-interface RepoResponse {
-  data: RepoObject[]
 }
 
 interface Response {
     update: boolean
-    data?: RepoObject[] | items[]
+    data?: RepoObject[] | Items[]
 }
 
 export default async (hash: string, options: Options) :Promise<Response | ErrorResponse> => {
