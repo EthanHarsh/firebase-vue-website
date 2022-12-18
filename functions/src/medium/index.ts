@@ -2,7 +2,7 @@ import axios from "axios";
 import {parseFeed} from "htmlparser2";
 import {writingImages} from "../constants/writingImages";
 import {updateRssJson} from "../github";
-import crypto from "crypto";
+import {contentHash} from "../utils";
 
 interface Options {
     recent: boolean
@@ -83,12 +83,7 @@ export const checkRssFeed = async (hash: string) :Promise<UpdateRssResponse | Er
     };
   }
 
-  const hashSecret = "SUPERSECRETHASH";
-
-
-  const hasher = crypto.createHmac("sha256", hashSecret);
-
-  const rssHash = hasher.update(JSON.stringify((rssResponse as RssResponse).data)).digest("hex");
+  const rssHash = contentHash((rssResponse as RssResponse).data);
 
   if (rssHash !== hash) {
     await updateRssJson((rssResponse as RssResponse), rssHash);
