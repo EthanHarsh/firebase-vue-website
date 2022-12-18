@@ -20,12 +20,13 @@ export interface RssResponse {
   data: items[]
 }
 
-interface ErrorResponse {
+export interface ErrorResponse {
   error: string
 }
 
-interface BoolResponse {
-  data: true
+interface UpdateRssResponse {
+  update: boolean,
+  data?: items[]
 }
 
 
@@ -73,7 +74,7 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
   return {data: rssResponse};
 };
 
-export const checkRssFeed = async (hash: string) :Promise<BoolResponse | ErrorResponse> => {
+export const checkRssFeed = async (hash: string) :Promise<UpdateRssResponse | ErrorResponse> => {
   const errorMsg = "Error checking RSS feed.";
   const rssResponse = await getRssFeed({recent: true});
   if ((rssResponse as ErrorResponse).error) {
@@ -91,9 +92,13 @@ export const checkRssFeed = async (hash: string) :Promise<BoolResponse | ErrorRe
 
   if (rssHash !== hash) {
     await updateRssJson((rssResponse as RssResponse), rssHash);
+    return {
+      update: true,
+      data: (rssResponse as RssResponse).data,
+    };
+  } else {
+    return {
+      update: false,
+    };
   }
-
-  return {
-    data: true,
-  };
 };
