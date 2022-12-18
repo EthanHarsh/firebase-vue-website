@@ -156,6 +156,7 @@ import WritingCards from "@/components/cards/WritingCards/WritingCards.vue";
 import ProjectCards from "@/components/cards/ProjectCards.vue";
 import IntroCard from "@/components/cards/IntroCard.vue";
 import { homeCopy } from "../constants/copy/home";
+import writingJson from "../constants/json/recentArticles.json";
 
 const title = "Welcome 👋🏻";
 
@@ -179,20 +180,13 @@ export default defineComponent({
   },
   data() {
     return {
-      articles: [],
+      articles: writingJson.data,
       repos: [],
       title,
     };
   },
   async mounted() {
     const fetchErrorMsg = "Error fetching writing data.";
-
-    // Get the latest articles
-    const getRssFeed = httpsCallable(functions, "getRssFeed");
-    const d = await getRssFeed({ recent: true }).catch((err) => {
-      err && console.error(fetchErrorMsg);
-    });
-    d && (this.articles = (d as HttpsCallableResult<any>).data.data);
     this.writingLoading = false;
 
     // Get featured repos
@@ -203,6 +197,14 @@ export default defineComponent({
     repos &&
       (this.repos = (repos as HttpsCallableResult<any>).data.data.reverse());
     this.projectLoading = false;
+    // Get the latest articles
+    const checkRssFeed = httpsCallable(functions, "checkRssFeed");
+    const d = await checkRssFeed(writingJson.hash).catch((err) => {
+      err && console.error(fetchErrorMsg);
+    });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    d.update && (this.articles = (d as HttpsCallableResult<any>).data.data);
   },
   setup() {
     return {

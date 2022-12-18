@@ -19,6 +19,26 @@
             <img v-bind="headerAttr" />
           </ion-col>
         </ion-row>
+        <ion-row class="ion-padding item finished">
+          <div>
+            <h1>Recent Writing Optimization</h1>
+            <p>
+              Data fetching associated with getting featured Github Projects and
+              recently written Medium articles is the main cause of loading
+              delays.
+            </p>
+          </div>
+        </ion-row>
+        <ion-row class="ion-padding item">
+          <div>
+            <h1>Featured Projects Optimization</h1>
+            <p>
+              Data fetching associated with getting featured Github Projects and
+              recently written Medium articles is the main cause of loading
+              delays.
+            </p>
+          </div>
+        </ion-row>
         <ion-row class="ion-padding item">
           <div>
             <h1>CI/CD Pipeline</h1>
@@ -44,17 +64,8 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding item">
-          <div>
-            <h1>Featured Projects/Recent Writing Optimization</h1>
-            <p>
-              Data fetching associated with getting featured Github Projects and
-              recently written Medium articles is the main cause of loading
-              delays.
-            </p>
-          </div>
-        </ion-row>
-        <ion-row class="ion-padding item">
+        <!--
+        <ion-row class="ion-padding item hidden">
           <div>
             <h1>Add Ski Game</h1>
             <p>
@@ -64,6 +75,7 @@
             </p>
           </div>
         </ion-row>
+        -->
         <ion-row class="ion-padding item">
           <div>
             <h1>Roadmap Automation</h1>
@@ -136,6 +148,10 @@ img {
   text-align: center;
   z-index: 2;
   font-size: 10vw;
+}
+
+.finished {
+  text-decoration: line-through;
 }
 
 .item:nth-of-type(odd) {

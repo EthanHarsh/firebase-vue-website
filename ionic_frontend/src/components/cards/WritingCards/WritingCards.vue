@@ -84,7 +84,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 import "animate.css";
-import { store } from "../../store";
+import { store } from "../../../store";
 export default defineComponent({
   name: "WritingCards",
   components: {
