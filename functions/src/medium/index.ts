@@ -8,7 +8,7 @@ interface Options {
     recent: boolean
 }
 
-interface items {
+export interface items {
   id: string,
   link: string,
   pubDate: string,

@@ -1,9 +1,24 @@
 import {Octokit} from "octokit";
 import {OctokitResponse} from "@octokit/types";
 import {GITHUB_TOKEN} from "../app_config.json";
-import {RssResponse, ErrorResponse} from "../medium";
+import {RssResponse, ErrorResponse, items} from "../medium";
 
 const octokit = new Octokit({auth: GITHUB_TOKEN});
+
+interface GithubCurrentStateOptions {
+  owner: string,
+  repo: string,
+  path: string,
+}
+
+interface UpdateGitHubOptions extends GithubCurrentStateOptions {
+  message: string,
+  content: {
+    hash: string,
+    data: items[]
+  },
+  current: OctokitResponse<any, number>
+}
 
 export const getFeaturedRepos = async () => {
   await octokit.rest.users.getAuthenticated();
@@ -31,9 +46,43 @@ export const getFeaturedRepos = async () => {
 };
 
 export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) => {
-  const owner = "EthanHarsh";
-  const repo = "firebase-vue-website";
-  const path = "ionic_frontend/src/constants/json/recentArticles.json";
+  let options: GithubCurrentStateOptions | UpdateGitHubOptions = {
+    owner: "EthanHarsh",
+    repo: "firebase-vue-website",
+    path: "ionic_frontend/src/constants/json/recentArticles.json",
+  };
+
+  const current = await getCurrentRepoState(options);
+
+  if ((current as ErrorResponse).error) {
+    return {
+      error: (current as ErrorResponse).error,
+    };
+  }
+
+  options = {
+    ...options,
+    message: "updating article json",
+    content: {
+      hash: rssHash,
+      data: rssResponse.data,
+    },
+    current: current as OctokitResponse<any, number>,
+  };
+
+  const updateRes = await updateRepo(options);
+
+  if ((updateRes as ErrorResponse).error) {
+    return {
+      error: (updateRes as ErrorResponse).error,
+    };
+  } else {
+    return true;
+  }
+};
+
+const getCurrentRepoState = async (options: GithubCurrentStateOptions) => {
+  const {owner, repo, path} = options;
 
   const current = await octokit.request(`GET /repos/${owner}/${repo}/contents/${path}`, {
     owner,
@@ -45,27 +94,24 @@ export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) =
     };
   });
 
-  if ((current as ErrorResponse).error) {
-    return {
-      error: (current as ErrorResponse).error,
-    };
-  }
+  return current;
+};
+
+const updateRepo = async (options: UpdateGitHubOptions) => {
+  const {owner, repo, path, message, content, current} = options;
 
   const updateRes = await octokit.request(`PUT /repos/${owner}/${repo}/contents/${path}`, {
     owner,
     repo,
     path,
-    message: "updating article json",
+    message,
     committer: {
       name: "Ethan Harsh",
       email: "ethan@ethanharsh.com",
     },
-    content: Buffer.from(JSON.stringify({
-      hash: rssHash,
-      data: rssResponse.data,
-    }, null, 2)).toString("base64"),
+    content: Buffer.from(JSON.stringify(content, null, 2)).toString("base64"),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    sha: (current as OctokitResponse<any, number>).data.sha,
+    sha: current.data.sha,
   }).catch((err) => {
     return {
       error: err,
