@@ -2,8 +2,19 @@ import {Octokit} from "octokit";
 import {OctokitResponse} from "@octokit/types";
 import {GITHUB_TOKEN} from "../app_config.json";
 import {RssResponse, ErrorResponse, items} from "../medium";
+import { contentHash } from "../utils";
 
-const octokit = new Octokit({auth: GITHUB_TOKEN});
+
+interface RepoObject {
+  name: string,
+  description: string | null,
+  language: string | null,
+  url: string | null,
+}
+
+interface RepoResponse {
+  data: RepoObject[]
+}
 
 interface GithubCurrentStateOptions {
   owner: string,
@@ -15,10 +26,12 @@ interface UpdateGitHubOptions extends GithubCurrentStateOptions {
   message: string,
   content: {
     hash: string,
-    data: items[]
+    data: items[] | RepoObject[]
   },
   current: OctokitResponse<any, number>
 }
+
+const octokit = new Octokit({auth: GITHUB_TOKEN});
 
 export const getFeaturedRepos = async () => {
   await octokit.rest.users.getAuthenticated();
@@ -43,42 +56,6 @@ export const getFeaturedRepos = async () => {
   return {
     data: featured,
   };
-};
-
-export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) => {
-  let options: GithubCurrentStateOptions | UpdateGitHubOptions = {
-    owner: "EthanHarsh",
-    repo: "firebase-vue-website",
-    path: "ionic_frontend/src/constants/json/recentArticles.json",
-  };
-
-  const current = await getCurrentRepoState(options);
-
-  if ((current as ErrorResponse).error) {
-    return {
-      error: (current as ErrorResponse).error,
-    };
-  }
-
-  options = {
-    ...options,
-    message: "updating article json",
-    content: {
-      hash: rssHash,
-      data: rssResponse.data,
-    },
-    current: current as OctokitResponse<any, number>,
-  };
-
-  const updateRes = await updateRepo(options);
-
-  if ((updateRes as ErrorResponse).error) {
-    return {
-      error: (updateRes as ErrorResponse).error,
-    };
-  } else {
-    return true;
-  }
 };
 
 const getCurrentRepoState = async (options: GithubCurrentStateOptions) => {
@@ -124,5 +101,102 @@ const updateRepo = async (options: UpdateGitHubOptions) => {
     };
   } else {
     return true;
+  }
+};
+
+export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) => {
+  let options: GithubCurrentStateOptions | UpdateGitHubOptions = {
+    owner: "EthanHarsh",
+    repo: "firebase-vue-website",
+    path: "ionic_frontend/src/constants/json/recentArticles.json",
+  };
+
+  const current = await getCurrentRepoState(options);
+
+  if ((current as ErrorResponse).error) {
+    return {
+      error: (current as ErrorResponse).error,
+    };
+  }
+
+  options = {
+    ...options,
+    message: "updating article json",
+    content: {
+      hash: rssHash,
+      data: rssResponse.data,
+    },
+    current: current as OctokitResponse<any, number>,
+  };
+
+  const updateRes = await updateRepo(options);
+
+  if ((updateRes as ErrorResponse).error) {
+    return {
+      error: (updateRes as ErrorResponse).error,
+    };
+  } else {
+    return true;
+  }
+};
+
+export const updateFeaturedRepoJson = async (featuredRepoResponse: RepoResponse, repoHash: string) => {
+  let options: GithubCurrentStateOptions | UpdateGitHubOptions = {
+    owner: "EthanHarsh",
+    repo: "firebase-vue-website",
+    path: "ionic_frontend/src/constants/json/recentArticles.json",
+  };
+
+  const current = await getCurrentRepoState(options);
+
+  if ((current as ErrorResponse).error) {
+    return {
+      error: (current as ErrorResponse).error,
+    };
+  }
+
+  options = {
+    ...options,
+    message: "updating featured repo json",
+    content: {
+      hash: repoHash,
+      data: featuredRepoResponse.data,
+    },
+    current: current as OctokitResponse<any, number>,
+  };
+
+  const updateRes = await updateRepo(options);
+
+  if ((updateRes as ErrorResponse).error) {
+    return {
+      error: (updateRes as ErrorResponse).error,
+    };
+  } else {
+    return true;
+  }
+};
+
+export const checkFeaturedRepos = async (hash: string) => {
+  const errorMsg = "Error checking featured repos.";
+  const featuredRepos = await getFeaturedRepos();
+
+  if ((featuredRepos as ErrorResponse).error) {
+    return {
+      error: errorMsg,
+    };
+  }
+
+  const featuredRepoHash = contentHash((featuredRepos as RepoResponse).data);
+
+  if (featuredRepoHash !== hash) {
+    await updateFeaturedRepoJson((featuredRepos as RepoResponse), featuredRepoHash);
+    return {
+      update: true,
+      data: (featuredRepos as RepoResponse).data,
+    };
+  } else {
+    return {
+      update: false,
+    };
   }
 };
