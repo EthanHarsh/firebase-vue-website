@@ -157,6 +157,7 @@ import ProjectCards from "@/components/cards/ProjectCards.vue";
 import IntroCard from "@/components/cards/IntroCard.vue";
 import { homeCopy } from "../constants/copy/home";
 import writingJson from "../constants/json/recentArticles.json";
+import featuredRepoJson from "../constants/json/featuredRepos.json";
 
 const title = "Welcome 👋🏻";
 
@@ -181,22 +182,25 @@ export default defineComponent({
   data() {
     return {
       articles: writingJson.data,
-      repos: [],
+      repos: featuredRepoJson.data,
       title,
     };
   },
   async mounted() {
     const fetchErrorMsg = "Error fetching writing data.";
     this.writingLoading = false;
+    this.projectLoading = false;
 
     // Get featured repos
-    const getFeaturedRepos = httpsCallable(functions, "getFeaturedRepos");
-    const repos = await getFeaturedRepos().catch((err) => {
+    const checkFeaturedRepos = httpsCallable(functions, "checkFeaturedRepos");
+    const repos = await checkFeaturedRepos().catch((err) => {
       err && console.error(fetchErrorMsg);
     });
-    repos &&
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    repos.update &&
       (this.repos = (repos as HttpsCallableResult<any>).data.data.reverse());
-    this.projectLoading = false;
+
     // Get the latest articles
     const checkRssFeed = httpsCallable(functions, "checkRssFeed");
     const d = await checkRssFeed(writingJson.hash).catch((err) => {

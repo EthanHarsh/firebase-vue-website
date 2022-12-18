@@ -2,7 +2,7 @@ import {Octokit} from "octokit";
 import {OctokitResponse} from "@octokit/types";
 import {GITHUB_TOKEN} from "../app_config.json";
 import {RssResponse, ErrorResponse, items} from "../medium";
-import { contentHash } from "../utils";
+import {contentHash} from "../utils";
 
 
 interface RepoObject {
@@ -144,7 +144,7 @@ export const updateFeaturedRepoJson = async (featuredRepoResponse: RepoResponse,
   let options: GithubCurrentStateOptions | UpdateGitHubOptions = {
     owner: "EthanHarsh",
     repo: "firebase-vue-website",
-    path: "ionic_frontend/src/constants/json/recentArticles.json",
+    path: "ionic_frontend/src/constants/json/featuredRepos.json",
   };
 
   const current = await getCurrentRepoState(options);
