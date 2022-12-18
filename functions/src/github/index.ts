@@ -1,5 +1,6 @@
 import {Octokit} from "octokit";
 import {GITHUB_TOKEN} from "../app_config.json";
+import {RssResponse} from "../medium";
 
 const octokit = new Octokit({auth: GITHUB_TOKEN});
 
@@ -26,4 +27,11 @@ export const getFeaturedRepos = async () => {
   return {
     data: featured,
   };
+};
+
+export const updateRssJson = async (rssResponse: RssResponse, rssHash: string) => {
+  console.log(JSON.stringify({
+    hash: rssHash,
+    data: rssResponse.data,
+  }));
 };

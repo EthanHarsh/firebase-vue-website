@@ -152,7 +152,7 @@ import {
 } from "@ionic/vue";
 import { business, school, build } from "ionicons/icons";
 import { functions } from "../constants/firebase";
-import WritingCards from "@/components/cards/WritingCards.vue";
+import WritingCards from "@/components/cards/WritingCards/WritingCards.vue";
 import ProjectCards from "@/components/cards/ProjectCards.vue";
 import IntroCard from "@/components/cards/IntroCard.vue";
 import { homeCopy } from "../constants/copy/home";

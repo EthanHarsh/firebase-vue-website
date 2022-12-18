@@ -1,5 +1,5 @@
 import * as functions from "firebase-functions";
-import {getRssFeed} from "./medium";
+import {getRssFeed, checkRssFeed} from "./medium";
 import {getFeaturedRepos} from "./github";
 
 // // Start writing Firebase Functions
@@ -12,3 +12,4 @@ import {getFeaturedRepos} from "./github";
 
 exports.getRssFeed = functions.https.onCall(getRssFeed);
 exports.getFeaturedRepos = functions.https.onCall(getFeaturedRepos);
+exports.checkRssFeed = functions.https.onCall(checkRssFeed);

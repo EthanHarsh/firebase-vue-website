@@ -1,6 +1,8 @@
 import axios from "axios";
 import {parseFeed} from "htmlparser2";
 import {writingImages} from "../constants/writingImages";
+import {updateRssJson} from "../github";
+import crypto from "crypto";
 
 interface Options {
     recent: boolean
@@ -14,12 +16,16 @@ interface items {
   image: string
 }
 
-interface RssResponse {
+export interface RssResponse {
   data: items[]
 }
 
 interface ErrorResponse {
   error: string
+}
+
+interface BoolResponse {
+  data: true
 }
 
 
@@ -65,4 +71,29 @@ export const getRssFeed = async (data: Options): Promise<RssResponse | ErrorResp
   }
 
   return {data: rssResponse};
+};
+
+export const checkRssFeed = async (hash: string) :Promise<BoolResponse | ErrorResponse> => {
+  const errorMsg = "Error checking RSS feed.";
+  const rssResponse = await getRssFeed({recent: true});
+  if ((rssResponse as ErrorResponse).error) {
+    return {
+      error: errorMsg,
+    };
+  }
+
+  const hashSecret = "SUPERSECRETHASH";
+
+
+  const hasher = crypto.createHmac("sha256", hashSecret);
+
+  const rssHash = hasher.update(JSON.stringify((rssResponse as RssResponse).data)).digest("hex");
+
+  if (rssHash !== hash) {
+    await updateRssJson((rssResponse as RssResponse), rssHash);
+  }
+
+  return {
+    data: true,
+  };
 };
