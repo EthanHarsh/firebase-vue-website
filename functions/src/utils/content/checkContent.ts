@@ -1,4 +1,5 @@
 import contentHash from "./contentHash";
+import validateContentHash from "./validateContentHash";
 import {Items, RssResponse, ErrorResponse, RepoObject, RepoResponse, GetFeaturedRepos, UpdateFeaturedRepoJson, UpdateRssJson, GetRssFeed} from "../../types";
 
 interface Options {
@@ -14,6 +15,11 @@ interface Response {
 
 export default async (hash: string, options: Options) :Promise<Response | ErrorResponse> => {
   const {errorMsg, contentFetch, contentUpdate} = options;
+  if (!validateContentHash(hash)) {
+    return {
+      error: errorMsg,
+    };
+  }
   const response: RssResponse | RepoResponse | ErrorResponse = await contentFetch({recent: true});
   if ((response as ErrorResponse).error) {
     return {
