@@ -66,3 +66,9 @@ export const updateJson = async (response: RssResponse | RepoResponse, hash: str
     return true;
   }
 };
+
+export const updateFeaturedRepoJson = async (featuredRepoResponse: RepoResponse, repoHash: string) => {
+  const response = await updateJson(featuredRepoResponse, repoHash, "ionic_frontend/src/constants/json/featuredRepos.json", "updating featured repo json");
+  return response;
+};
+export type UpdateFeaturedRepoJson = typeof updateFeaturedRepoJson;

@@ -15,14 +15,13 @@ interface Response {
 export default async (hash: string, options: Options) :Promise<Response | ErrorResponse> => {
   const {errorMsg, contentFetch, contentUpdate} = options;
   const response: RssResponse | RepoResponse | ErrorResponse = await contentFetch({recent: true});
-  if ((response as ErrorResponse).error || !response) {
+  if ((response as ErrorResponse).error) {
     return {
       error: errorMsg,
     };
   }
 
   const cHash = contentHash((response as RssResponse | RepoResponse).data);
-
   if (cHash !== hash) {
     await contentUpdate((response as RssResponse & RepoResponse), cHash);
     return {
