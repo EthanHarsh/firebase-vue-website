@@ -39,7 +39,7 @@
             </p>
           </div>
         </ion-row>
-        <ion-row class="ion-padding item">
+        <ion-row class="ion-padding item finished">
           <div>
             <h1>
               Generalize/Optimize checkFeaturedRepos & checkRssFeed functions

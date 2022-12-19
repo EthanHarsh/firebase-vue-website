@@ -11,7 +11,6 @@
           <ion-title size="large">Coding Portfolio</ion-title>
         </ion-toolbar>
       </ion-header>
-
       <ExploreContainer name="Coding Portfolio" redirect-name="GitHub" />
     </ion-content>
   </ion-page>
