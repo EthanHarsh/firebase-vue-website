@@ -10,7 +10,9 @@
     <div v-for="repo of projects" :key="repo.language">
       <ion-row class="ion-padding ion-margin">
         <ion-col>
-          <ion-card class="ion-padding ion-margin outer-radius no-shadow">
+          <ion-card
+            class="ion-padding ion-margin outer-radius no-shadow light-border"
+          >
             <ion-card-header
               color="tertiary"
               class="ion-margin ion-padding inner-radius"

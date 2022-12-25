@@ -26,7 +26,7 @@
                   class="ion-justify-content-center animate__animated animate__fadeIn"
                 >
                   <p>
-                    I'm a web3 focused developer with significant start-up and
+                    I'm a full stack developer with significant start-up and
                     small business experience.
                   </p>
                 </ion-row>
@@ -52,8 +52,8 @@
                   class="ion-justify-content-center animate__animated animate__fadeIn"
                 >
                   <p>
-                    My technical skills include Solidity, Ethers.js, Typescript,
-                    Python and Serverless Cloud Architectures.
+                    My technical skills include Typescript, Python, Solidity,
+                    Ethers.js, and Serverless Cloud Architectures.
                   </p>
                 </ion-row>
               </ion-grid>
