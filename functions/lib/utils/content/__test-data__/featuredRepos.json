@@ -1,0 +1,41 @@
+{
+    "hash": "01b1ec7e1c9b0a8df064198f4caa1e0be0e7733e113a9c7cadb195b8d8118f92",
+    "data": [
+        {
+            "name": "arbitrage-bot",
+            "description": "Scripts to download, build, run, and update all arbitrage bot microservices on Debian and Ubuntu. Originally written as a weekend project to explore the Uniswap V2 Smart Contract.",
+            "language": "Shell",
+            "url": "https://github.com/EthanHarsh/arbitrage-bot"
+        },
+        {
+            "name": "arbitrage-bot-trade-supervisor-public",
+            "description": "Ensures Token Purchase Meets Purchase Standards Microservice. Written in Typescript utilizing Express and Ethers. Originally written as a weekend project to explore the Uniswap V2 Smart Contract.",
+            "language": "TypeScript",
+            "url": "https://github.com/EthanHarsh/arbitrage-bot-trade-supervisor-public"
+        },
+        {
+            "name": "arbitrage-price-bot-public",
+            "description": "Arbitrage DEX Token Price Checking Microservice. Written in Javascript utilizing Ethers and Hardhat. Originally written as a weekend project to explore the Uniswap V2 Smart Contract.",
+            "language": "JavaScript",
+            "url": "https://github.com/EthanHarsh/arbitrage-price-bot-public"
+        },
+        {
+            "name": "firebase-vue-website",
+            "description": "My new personal website. Built with Vue and Google Firebase. Functions written in Typescript. 👷🏻‍♂️ Work in progress. 👷🏻‍♂️",
+            "language": "Vue",
+            "url": "https://github.com/EthanHarsh/firebase-vue-website"
+        },
+        {
+            "name": "HyperPlay-Landing-Page-Public",
+            "description": "REACT Landing Page",
+            "language": "JavaScript",
+            "url": "https://github.com/EthanHarsh/HyperPlay-Landing-Page-Public"
+        },
+        {
+            "name": "HODLpacGov-Token-Smart-Contracts",
+            "description": "Quasi-Soulbound Governance Token for HODLpac. Written in Solidity utilizing Open Zeppelin and Hardhat.",
+            "language": "JavaScript",
+            "url": "https://github.com/Polity-Labs/HODLpacGov-Token-Smart-Contracts"
+        }
+    ]
+}

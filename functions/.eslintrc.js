@@ -19,7 +19,7 @@ module.exports = {
   },
   ignorePatterns: [
     "/lib/**/*", // Ignore built files.
-    "babel.config.js",
+    "jest.config.ts",
   ],
   plugins: [
     "@typescript-eslint",
