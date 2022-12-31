@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "firebase emulators:start"
+    "dev": "firebase emulators:start",
+    "install:functions": "cd functions && npm install",
+    "test:functions": "cd functions && npm run test",
+    "install:frontend": "cd ionic_frontend && npm install"
   },
   "repository": {
     "type": "git",
