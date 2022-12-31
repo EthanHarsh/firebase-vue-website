@@ -68,7 +68,7 @@
             >
           </div>
         </ion-row>
-        <writing-cards :articles="articles" :loading="writingLoading" />
+        <writing-cards-section :articles="articles" :loading="writingLoading" />
         <ion-row>
           <div class="ion-padding ion-margin animate__animated animate__fadeIn">
             <h1>Future Skills</h1>
@@ -151,13 +151,13 @@ import {
   IonLabel,
 } from "@ionic/vue";
 import { business, school, build } from "ionicons/icons";
-import { functions } from "../constants/firebase";
-import WritingCards from "@/components/cards/WritingCards/WritingCards.vue";
+import { functions } from "@/constants/firebase";
+import WritingCardsSection from "./sections/WritingCardsSection.vue";
 import ProjectCards from "@/components/cards/ProjectCards.vue";
 import IntroCard from "@/components/cards/IntroCard.vue";
-import { homeCopy } from "../constants/copy/home";
-import writingJson from "../constants/json/recentArticles.json";
-import featuredRepoJson from "../constants/json/featuredRepos.json";
+import { homeCopy } from "@/constants/copy/home";
+import writingJson from "@/constants/json/recentArticles.json";
+import featuredRepoJson from "@/constants/json/featuredRepos.json";
 
 const title = "Welcome 👋🏻";
 
@@ -171,7 +171,7 @@ export default defineComponent({
     IonPage,
     IonCardSubtitle,
     IonIcon,
-    WritingCards,
+    WritingCardsSection,
     ProjectCards,
     IonAccordionGroup,
     IonAccordion,
