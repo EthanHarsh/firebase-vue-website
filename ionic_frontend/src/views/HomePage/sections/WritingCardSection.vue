@@ -32,7 +32,7 @@ import { store } from "../../../store";
 import WritingCard from "@/components/cards/WritingCards/WritingCard.vue";
 import WritingCardMobileChange from "@/components/cards/WritingCards/WritingCard-MobileChange.vue";
 export default defineComponent({
-  name: "WritingCards",
+  name: "WritingCardSection",
   components: {
     WritingCard,
     WritingCardMobileChange,
