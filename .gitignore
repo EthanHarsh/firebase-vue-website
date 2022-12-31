@@ -107,3 +107,7 @@ main-340008-*.json
 app.config.json
 
 ionic_frontend/dist
+ionic_frontend/ios
+ionic_frontend/android
+
+functions/env_vars.yaml

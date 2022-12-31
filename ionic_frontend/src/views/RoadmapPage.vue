@@ -50,20 +50,20 @@
             </p>
           </div>
         </ion-row>
+        <ion-row class="ion-padding item finished">
+          <div>
+            <h1>Build Unit Tests for Cloud Functions</h1>
+            <p>Write a unit testing suite for Google Cloud Functions.</p>
+          </div>
+        </ion-row>
         <ion-row class="ion-padding item">
           <div>
             <h1>CI/CD Pipeline</h1>
             <p>
               Build a CI/CD pipeline. The pipeline needs to automatically test
-              and deploy new cloud functions as well as test, build and deploy
+              and deploy new cloud functions as well as test, build, and deploy
               changes to the Vue application.
             </p>
-          </div>
-        </ion-row>
-        <ion-row class="ion-padding item">
-          <div>
-            <h1>Build Unit Tests for Cloud Functions</h1>
-            <p>Write a unit testing suite for Google Cloud Functions.</p>
           </div>
         </ion-row>
         <ion-row class="ion-padding item">

@@ -19,6 +19,7 @@ module.exports = {
   },
   ignorePatterns: [
     "/lib/**/*", // Ignore built files.
+    "babel.config.js",
   ],
   plugins: [
     "@typescript-eslint",
@@ -28,5 +29,6 @@ module.exports = {
     "quotes": ["error", "double"],
     "import/no-unresolved": 0,
     "max-len": 0,
+    "new-cap": 0,
   },
 };
