@@ -111,3 +111,4 @@ ionic_frontend/ios
 ionic_frontend/android
 
 functions/env_vars.yaml
+functions/coverage
