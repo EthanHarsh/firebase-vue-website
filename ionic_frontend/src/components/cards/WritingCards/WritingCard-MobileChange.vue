@@ -8,20 +8,26 @@
           color="secondary"
           class="ion-margin ion-padding inner-radius"
         >
-          <ion-card-subtitle>
+          <ion-card-subtitle :id="`${id}-pubDate`">
             {{ pubDate }}
           </ion-card-subtitle>
-          <ion-card-title>
+          <ion-card-title :id="`${id}-title`">
             {{ title }}
           </ion-card-title>
         </ion-card-header>
         <ion-card-content class="ion-margin-top ion-justify-content-center">
-          <img :src="image" :alt="title" class="inner-radius card-img" />
+          <img
+            :src="image"
+            :alt="title"
+            class="inner-radius card-img"
+            :id="`${id}-image`"
+          />
           <ion-button
             fill="outline"
             color="secondary"
             :href="link"
             class="ion-margin-top"
+            :id="`${id}-link`"
             >Read Article</ion-button
           >
         </ion-card-content>
@@ -55,6 +61,7 @@ export default defineComponent({
     title: String,
     image: String,
     link: String,
+    id: String,
   },
 });
 </script>

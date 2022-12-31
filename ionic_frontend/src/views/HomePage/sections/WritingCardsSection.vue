@@ -6,6 +6,7 @@
         :title="article.title"
         :image="article.image"
         :link="article.link"
+        :id="article.id.split('/p/')[1]"
       />
     </div>
   </div>
@@ -17,6 +18,7 @@
           :title="article.title"
           :image="article.image"
           :link="article.link"
+          :id="article.id.split('/p/')[1]"
         />
       </ion-col>
     </ion-row>
