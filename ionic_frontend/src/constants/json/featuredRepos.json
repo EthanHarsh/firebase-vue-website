@@ -1,5 +1,5 @@
 {
-  "hash": "01b1ec7e1c9b0a8df064198f4caa1e0be0e7733e113a9c7cadb195b8d8118f92",
+  "hash": "0f44f29c367c8d0f2d7e8a01bb163dac5382dfce5a2435e910ea5d0c7275fcf3",
   "data": [
     {
       "name": "arbitrage-bot",
@@ -22,7 +22,7 @@
     {
       "name": "firebase-vue-website",
       "description": "My new personal website. Built with Vue and Google Firebase. Functions written in Typescript. 👷🏻‍♂️ Work in progress. 👷🏻‍♂️",
-      "language": "Vue",
+      "language": "TypeScript",
       "url": "https://github.com/EthanHarsh/firebase-vue-website"
     },
     {
