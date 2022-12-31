@@ -20,7 +20,6 @@ const options = {
 test("Should not update featured repo data", async () => {
 // @ts-ignore
   const check = await checkContent(featuredRepos.hash, options);
-  console.log(check);
   expect(JSON.stringify(check)).toBe(JSON.stringify({
     update: false,
   }));
