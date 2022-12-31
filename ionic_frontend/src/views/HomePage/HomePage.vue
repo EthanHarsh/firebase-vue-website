@@ -68,7 +68,7 @@
             >
           </div>
         </ion-row>
-        <writing-cards-section :articles="articles" :loading="writingLoading" />
+        <writing-cards-section :articles="articles" />
         <ion-row>
           <div class="ion-padding ion-margin animate__animated animate__fadeIn">
             <h1>Future Skills</h1>
@@ -127,7 +127,7 @@
             >
           </div>
         </ion-row>
-        <project-cards :loading="projectLoading" :projects="repos" />
+        <project-card-section :projects="repos" />
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -152,8 +152,8 @@ import {
 } from "@ionic/vue";
 import { business, school, build } from "ionicons/icons";
 import { functions } from "@/constants/firebase";
-import WritingCardsSection from "./sections/WritingCardsSection.vue";
-import ProjectCards from "@/components/cards/ProjectCards.vue";
+import WritingCardsSection from "./sections/WritingCardSection.vue";
+import ProjectCardSection from "./sections/ProjectCardSection.vue";
 import IntroCard from "@/components/cards/IntroCard.vue";
 import { homeCopy } from "@/constants/copy/home";
 import writingJson from "@/constants/json/recentArticles.json";
@@ -172,7 +172,7 @@ export default defineComponent({
     IonCardSubtitle,
     IonIcon,
     WritingCardsSection,
-    ProjectCards,
+    ProjectCardSection,
     IonAccordionGroup,
     IonAccordion,
     IonItem,
@@ -182,14 +182,17 @@ export default defineComponent({
   data() {
     return {
       articles: writingJson.data,
-      repos: featuredRepoJson.data,
+      repos: featuredRepoJson.data.map((a) => {
+        return {
+          ...a,
+          id: a.name,
+        };
+      }),
       title,
     };
   },
   async mounted() {
     const fetchErrorMsg = "Error fetching writing data.";
-    this.writingLoading = false;
-    this.projectLoading = false;
 
     // Get featured repos
     const checkFeaturedRepos = httpsCallable(functions, "checkFeaturedRepos");
@@ -217,8 +220,6 @@ export default defineComponent({
       business,
       school,
       build,
-      writingLoading: true,
-      projectLoading: true,
       homeCopy,
     };
   },

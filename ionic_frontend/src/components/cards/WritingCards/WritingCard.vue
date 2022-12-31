@@ -42,7 +42,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 export default defineComponent({
-  name: "WritingCards",
+  name: "WritingCard",
   components: {
     IonCard,
     IonCardTitle,

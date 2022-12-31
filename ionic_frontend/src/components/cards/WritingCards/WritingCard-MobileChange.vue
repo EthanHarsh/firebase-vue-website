@@ -47,7 +47,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 export default defineComponent({
-  name: "WritingCards",
+  name: "WritingCardMobileChange",
   components: {
     IonCard,
     IonCardTitle,
