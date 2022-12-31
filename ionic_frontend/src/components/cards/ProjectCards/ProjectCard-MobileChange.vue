@@ -4,20 +4,20 @@
       color="tertiary"
       class="ion-margin ion-padding inner-radius"
     >
-      <ion-card-subtitle>
+      <ion-card-subtitle :id="`${id}-language`">
         {{ language }}
       </ion-card-subtitle>
-      <ion-card-title>
+      <ion-card-title :id="`${id}-name`">
         {{ name }}
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-margin-top">
-      <ion-text>
+      <ion-text :id="`${id}-description`">
         {{ description }}
       </ion-text>
     </ion-card-content>
     <ion-card-content>
-      <ion-button fill="outline" color="tertiary" :href="url"
+      <ion-button fill="outline" color="tertiary" :href="url" :id="`${id}-url`"
         >View on Github</ion-button
       >
     </ion-card-content>

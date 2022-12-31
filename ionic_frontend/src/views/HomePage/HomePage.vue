@@ -182,7 +182,12 @@ export default defineComponent({
   data() {
     return {
       articles: writingJson.data,
-      repos: featuredRepoJson.data,
+      repos: featuredRepoJson.data.map((a) => {
+        return {
+          ...a,
+          id: a.name,
+        };
+      }),
       title,
     };
   },
